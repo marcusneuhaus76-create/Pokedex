@@ -1,24 +1,41 @@
 <html lang="de">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta content="width=device-width, initial-scale=1.0" />
     <title>Pokedex</title>
     <link rel="stylesheet" href="style.css" />
-    <link rel="icon" href="./img/favicon.svg" />
+    <link rel="icon" href="./img/alanyadk-pokemon-1536849_640.png" />
   </head>
 
   <body onload="showGallery()">
     <header id="header">
-      <p class="foot_container" class="logo-pos">
-        <img src="./img/alanyadk-pokemon-1536849_640.png" class="logo-size" />
+
+      <div class="logo-group">
+      <p class="logo-pos foot_container">
+        <img src="./img/alanyadk-pokemon-1536849_640.png" class="logo-size"/>
+        <h1 class="sitename"> &nbsp;Pokedex</h1>
       </p>
-      <h1 class="sitename">Pokedex</h1>
-      <p class="foot_container"></p>
+    </div>
+     
+      <p class="search_container">
+        <form>
+          <input type="search" placeholder="Suchen …">
+          <button type="submit">🔍</button>
+        </form>
+      </p>      
     </header>
 
-    <div id="galleryContainer">
-      <div id="maingall" class="gallery"></div>
+    <div id="mainpart">
+      <div id="pokemon-list"></div>
     </div>
+    <!-- <h1 id="name"></h1> -->
+   
+    
+   
+
+    <!-- <div id="galleryContainer">
+      <div id="maingall" class="gallery"></div>
+    </div> -->
 
     <footer id="footer">
       <span> </span>
