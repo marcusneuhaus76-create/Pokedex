@@ -54,9 +54,9 @@ function change(id) { // Funktion zum Ändern des Bildes, insbesondere der Farbe
       return response.json();
     })
     .then(function(data) {
-      const card = document.querySelector(".pokemon-card:nth-child(" + id + ")"); //Hier suchst du im DOM nach der .pokemon-card, die an Position id steht.
-      const img = card.querySelector("img");
-      img.src = data.sprites.front_shiny;
+      const card = document.querySelector(".pokemon-card:nth-child(" + id + ")"); //Hier suche ich im DOM nach der .pokemon-card, die an Position id steht.
+      const img = card.querySelector("img"); // In der gefundenen Karte wird das erste <img>-Element gesucht. Ich bekomme also das Pokémon-Bild.
+      img.src = data.sprites.front_shiny; //Hier wird die Quelle des Bildes auf die shiny-Version geändert, die in den Daten des Pokémons enthalten ist. data.sprites.front_shiny ist die Shiny-Version des Pokémon.
     })
     .catch(function(error) {
       console.error("Fehler:", error);
