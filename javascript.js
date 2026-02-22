@@ -54,7 +54,7 @@ function change(id) { // Funktion zum Ändern des Bildes, insbesondere der Farbe
       return response.json();
     })
     .then(function(data) {
-      const card = document.querySelector(".pokemon-card:nth-child(" + id + ")"); //Hier suche ich im DOM nach der .pokemon-card, die an Position id steht.
+      const card = document.querySelector(".pokemon-card:nth-child(" + id + ")"); //Hier suche ich im DOM nach der .pokemon-card, die an Position "id" steht.
       const img = card.querySelector("img"); // In der gefundenen Karte wird das erste <img>-Element gesucht. Ich bekomme also das Pokémon-Bild.
       img.src = data.sprites.front_shiny; //Hier wird die Quelle des Bildes auf die shiny-Version geändert, die in den Daten des Pokémons enthalten ist. data.sprites.front_shiny ist die Shiny-Version des Pokémon.
     })
@@ -67,10 +67,10 @@ function change(id) { // Funktion zum Ändern des Bildes, insbesondere der Farbe
 function showtype(id) {
   fetch(`https://pokeapi.co/api/v2/type/${id}/`)
     .then(function(response) {
-      return response.json();
+      return response.json(); // kurze Form für "response.text().then(text => JSON.parse(text))" D.h. lies den zurückgegebenen Body vollständig und parse ihn als JSON. Das Ergebnis wird an die nächste .then() Funktion weitergegeben.
     })
-    .then(function(data) {
-      console.log(data);
+    .then(function(data) { // Hier werden die Daten verarbeitet, die von der vorherigen .then() Funktion zurückgegeben wurden. In diesem Fall sind es die Informationen über den Pokémon-Typ.
+      console.log(data); //
       return data;
     })
     .catch(function(error) {
