@@ -1,6 +1,8 @@
-  function showGallery() {
-    const container = document.getElementById("pokemon-list");
-    container.innerHTML = "";
+  
+  
+  
+  function showGallery() { // Einzelne Auflistung der Poekemon-Karten, die durch die ID der Pokémon bestimmt wird. Es werden die ersten 40 Pokémon angezeigt.
+    const container = document.getElementById("pokemon-list"); // Die Karten werden im Container mit der ID "pokemon-list" angezeigt. Ein Untercontainer, von "mainpart"
 
   for (let id = 1; id <= 40; id++) {
     fetch(`https://pokeapi.co/api/v2/pokemon/${id}/`)
@@ -42,9 +44,9 @@ function toggleSize(img) {
   let contentRef = document.getElementById("mainpart");
 
   if (!document.getElementById("bildOverlay")) {
-    contentRef.innerHTML += `<div id="bildOverlay" class="overlay" onclick="toggleOverlay()">
-                              <div onclick="toggleStop()"></div>
-                            </div>`;}
+      contentRef.innerHTML += `<div id="bildOverlay" class="overlay" onclick="toggleStop()">
+                                <div onclick="toggleOverlay()"></div>
+                               </div>`;}
 }
 
 
@@ -64,7 +66,7 @@ function change(id) { // Funktion zum Ändern des Bildes, insbesondere der Farbe
 }
 
 
-function showtype(id) {
+function showtype(id) { // Funktion zum Anzeigen der Informationen über den Pokémon-Typ, als Nummer
   fetch(`https://pokeapi.co/api/v2/type/${id}/`)
     .then(function(response) {
       return response.json(); // kurze Form für "response.text().then(text => JSON.parse(text))" D.h. lies den zurückgegebenen Body vollständig und parse ihn als JSON. Das Ergebnis wird an die nächste .then() Funktion weitergegeben.
