@@ -44,8 +44,8 @@ function toggleSize(img) {
   let contentRef = document.getElementById("mainpart");
 
   if (!document.getElementById("bildOverlay")) {
-      contentRef.innerHTML += `<div id="bildOverlay" class="overlay" onclick="toggleStop()">
-                                <div onclick="toggleOverlay()"></div>
+      contentRef.innerHTML += `<div id="bildOverlay" onclick="toggleStop(event)">
+                                <div onclick="toggleOverlay()" class="overlay"></div>
                                </div>`;}
 }
 
@@ -82,7 +82,7 @@ function showtype(id) { // Funktion zum Anzeigen der Informationen über den Pok
 }
 
 
-function toggleStop() {
+function toggleStop(event) {
   event.stopPropagation();
 }
 
