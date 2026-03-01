@@ -112,6 +112,16 @@ h1 {
       transition: transform 0.2s;
       }
 
+.xclose {
+    font-size: 20px;
+    color: rgb(5, 0, 0);
+    font-family: Figtree-Light;
+    display: flex;
+    position: absolute;
+    left: 330px;
+    top: 5px;  
+    cursor: default;
+}
 
 .bigphoto {
     position: relative;
@@ -140,7 +150,7 @@ h1 {
     align-items: center;  
 }
 
-    .pokemon-card:hover {
+.pokemon-card:hover {
       transform: scale(1.05);
     }
 

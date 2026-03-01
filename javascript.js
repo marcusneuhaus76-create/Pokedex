@@ -12,12 +12,14 @@
         card.classList.add("pokemon-card");
 
         card.innerHTML = `
+          
           <h3>${data.name}</h3><br>
+          <h1 class="xclose">X</h1><br>
           <h2>${data.id}</h2>
-          <img src="${data.sprites.front_default}" alt="${data.name}"
-          onclick="toggleSize(this)">
-          <button onclick="roar(${data.id})">Roar</button>
-          <button onclick="change(${data.id})">Color</button>          
+            <img src="${data.sprites.front_default}" alt="${data.name}"
+            onclick="toggleSize(this)">
+            <button onclick="roar(${data.id})">Roar</button>
+            <button onclick="change(${data.id})">Color</button>          
           `;
         container.appendChild(card);
       });
@@ -34,20 +36,6 @@ function roar(id) {
     })
     .catch(error => console.error("Fehler:", error));
   }
-
-
-
-function toggleSize(img) {
-  const card = img.closest(".pokemon-card");
-  card.classList.toggle("big");
-
-  let contentRef = document.getElementById("mainpart");
-
-  if (!document.getElementById("bildOverlay")) {
-      contentRef.innerHTML += `<div id="bildOverlay" onclick="toggleStop(event)">
-                                <div onclick="toggleOverlay()" class="overlay"></div>
-                               </div>`;}
-}
 
 
 function change(id) { // Funktion zum Ändern des Bildes, insbesondere der Farbe des Pokémons
@@ -77,8 +65,7 @@ function showtype(id) { // Funktion zum Anzeigen der Informationen über den Pok
     })
     .catch(function(error) {
       console.error("Fehler:", error);
-      
-    });
+      });
 }
 
 
@@ -87,10 +74,31 @@ function toggleStop(event) {
 }
 
 
-function toggleOverlay() {
+/* function toggleOverlay() {
   let overlay = document.getElementById("bildOverlay");
   if (overlay) overlay.remove(); 
   
   /* let frame = document.getElementById("pokemon-list");
-  if (frame) frame.remove();    */
+  if (frame) frame.remove();    
+}
+ */
+
+function closeDialog() {
+    let dialog = document.getElementById(`bildOverlay`);
+    if (dialog) {
+        document.body.classList.remove("overlay");
+        dialog.close();
+    }
+}
+
+function toggleSize(img) {
+  const card = img.closest(".pokemon-card");
+  card.classList.toggle("big");
+
+  let contentRef = document.getElementById("mainpart");
+
+  if (!document.getElementById("bildOverlay")) {
+      contentRef.innerHTML += `<div id="bildOverlay" onclick="toggleStop(event)">
+                                <div onclick="toggleOverlay()" class="overlay"></div>
+                               </div>`;}
 }
