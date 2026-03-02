@@ -733,6 +733,7 @@ h1 {
 .bigphoto_size {
   max-width: 500px;
   max-height: 500px;
+  transform: scale(3);
   height: auto;
   border: 5px solid white;
   margin-bottom: 50px;

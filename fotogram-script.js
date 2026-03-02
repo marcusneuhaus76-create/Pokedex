@@ -67,8 +67,8 @@ function showPhoto(i) {
 }
 
 function showPhotoOnArrow(i) {
-  if (i > 11) i = 0;
-  if (i < 0) i = 11;
+  if (i > 9) i = 0;
+  if (i < 0) i = 9;
   
 
   let contentRef = document.getElementById("bscpos");
