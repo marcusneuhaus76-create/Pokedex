@@ -1,3 +1,41 @@
+header {
+  display: flex;
+  box-shadow: 1px -4px 10px 0;
+  height: 100px;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #082129;
+  
+}
+
+
+.logo-group {
+  display: flex;          /* hält Bild + Text zusammen */
+  align-items: center;
+  /* gap: 5px;     */          /*  Abstand zwischen Bild & Text */
+}
+
+.logo-pos {
+  position: relative;
+  margin-top: 35px;
+  margin-left: 35px;
+  margin-right: 35px;  
+  display: flex;
+  justify-content: flex-start;
+  align-items: left;
+}
+
+.logo-size {
+  margin-left: 35px;
+  width: 64px;
+  height: 64px;
+  border-radius: 0px;
+  padding-bottom: 30px;
+}
+
+
+
 @font-face {
   font-family: "Figtree-Light";
   src: url("fonts/Figtree-Light.woff2") format("woff2");
@@ -45,16 +83,15 @@ body {
 /* .element {
 }
  */
-header {
+/* header {
   display: flex;
   box-shadow: 1px -4px 10px 0;
   height: 100px;
   top: 0;
   left: 0;
   width: 100%;
-  background-color: grey;
-  
-}
+  background-color: grey;  
+} */
 
 @media (max-height: 620px) {
   header {
@@ -118,14 +155,14 @@ h1 {
   }
 }
 
-.logo-pos {
+/* .logo-pos {
   position: relative;
   margin-top: 35px;
   margin-left: 35px;
   display: flex;
   justify-content: flex-start;
   align-items: left;
-}
+} */
 
 @media (max-height: 588px) {
   .logo-pos {
@@ -149,12 +186,12 @@ h1 {
   }
 }
 
-.logo-size {
+/* .logo-size {
   margin-left: 35px;
   width: 64px;
   height: 64px;
   border-radius: 0px;
-}
+} */
 
 @media (max-height: 670px) or (max-width: 640px) {
   .logo-size {
@@ -694,8 +731,8 @@ h1 {
 }
 
 .bigphoto_size {
-  max-width: 300px;
-  max-height: 300px;
+  max-width: 500px;
+  max-height: 500px;
   height: auto;
   border: 5px solid white;
   margin-bottom: 50px;
