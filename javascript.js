@@ -12,9 +12,8 @@
         card.classList.add("pokemon-card");
 
         card.innerHTML = `
-          
-          <h3>${data.name}</h3><br>
-          <h1 class="xclose">X</h1><br>
+          <h1 class="xclose" onclick="closeCard(this)">X</h1>   
+          <h3>${data.name}</h3><br>  
           <h2>${data.id}</h2>
             <img src="${data.sprites.front_default}" alt="${data.name}"
             onclick="toggleSize(this)">
@@ -25,6 +24,8 @@
       });
   }
 }
+
+ /*<h1 class="xclose">${data}X</h1><br>*/
 
 function roar(id) {
   fetch(`https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/${id}.ogg`)

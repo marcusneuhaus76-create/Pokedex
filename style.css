@@ -105,7 +105,7 @@ h1 {
 .pokemon-card {
       background: white;
       border-radius: 12px;
-      padding: 25px;
+      padding: 5px;
       /* padding: 12px; */
       text-align: center;
       box-shadow: 0 4px 8px rgba(0,0,0,0.1);
@@ -117,8 +117,10 @@ h1 {
     color: rgb(5, 0, 0);
     font-family: Figtree-Light;
     display: flex;
-    position: absolute;
-    left: 330px;
+    position: relative;
+    /* padding-left: 60px; */
+    justify-content: flex-end;
+    padding-right: 10px;
     top: 5px;  
     cursor: default;
 }
@@ -205,8 +207,12 @@ h1 {
  */
 
  .pokemon-card.big {
-  transform: scale(3.2);
+  transform: scale(2);
   z-index: 10;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+
 }
 
 
