@@ -1,8 +1,9 @@
 let pokemons = [];
 
+let more = 0;
 
 async function showGallery() {
-  for (let id = 1; id <= 10; id++) {
+  for (let id = 1 + more; id <= 10 + more; id++) {
     const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}/`);
     const data = await response.json();
     pokemons.push(data);
@@ -10,22 +11,22 @@ async function showGallery() {
 
   let contentRef = document.getElementById("pokemon-list");
 
-  for (let i = 0; i < pokemons.length; i++) {
+  for (let i = 0 + more; i < pokemons.length; i++) {
     contentRef.innerHTML += `
-      <img 
-        src="${pokemons[i].sprites.front_default}" 
-        class="smallphoto"
-        onclick="showPhoto(${i})"
-      >
-    `;
+      <img src="${pokemons[i].sprites.front_default}" class="smallphoto" onclick="showPhoto(${i})">`;
   }
+  contentRef.innerHTML += `<button class="morebutton" onclick="loadMore()">Load More</button>`;
+}
+
+function loadMore() {
+  more += 10;
+  showGallery();
 }
 
 
 
-
 async function fillarray() {
-  for (let id = 1; id <= 10; id++) {
+  for (let id = 1 + more; id <= 10 + more; id++) {
     try {
       const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}/`);
       const data = await response.json();
@@ -67,8 +68,8 @@ function showPhoto(i) {
 }
 
 function showPhotoOnArrow(i) {
-  if (i > 9) i = 0;
-  if (i < 0) i = 9;
+  if (i > 9 +  more) i = 0;
+  if (i < 0) i = 9 + more;
   
 
   let contentRef = document.getElementById("bscpos");
