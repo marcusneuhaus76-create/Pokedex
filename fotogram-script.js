@@ -15,13 +15,13 @@ async function showGallery() {
     contentRef.innerHTML += `
       <img src="${pokemons[i].sprites.front_default}" class="smallphoto" onclick="showPhoto(${i})">`;
   }
-  contentRef.innerHTML += `<button class="morebutton" onclick="loadMore()">Load More</button>`;
 }
 
 function loadMore() {
   more += 10;
   showGallery();
 }
+
 
 
 
@@ -95,10 +95,8 @@ function toggleOverlay(img) {
 
   let card = img.closest(".pokemon-card");
   card.classList.toggle("big");
-
 }
 
- 
 
 
 
