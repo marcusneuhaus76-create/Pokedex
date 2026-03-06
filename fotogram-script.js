@@ -13,7 +13,11 @@ async function showGallery() {
 
   for (let i = 0 + more; i < pokemons.length; i++) {
     contentRef.innerHTML += `
-      <img src="${pokemons[i].sprites.front_default}" class="smallphoto" onclick="showPhoto(${i})">`;
+    <div class="pokemon-card">
+    <div class="picture_name_card">${pokemons[i].name}
+      <img src="${pokemons[i].sprites.front_default}" class="smallphoto" onclick="showPhoto(${i})">
+    </div>
+    </div>`;
   }
 }
 
