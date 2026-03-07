@@ -1,3 +1,25 @@
+const colours = {
+	normal: '#A8A77A',
+	fire: '#EE8130',
+	water: '#6390F0',
+	electric: '#F7D02C',
+	grass: '#7AC74C',
+	ice: '#96D9D6',
+	fighting: '#C22E28',
+	poison: '#A33EA1',
+	ground: '#E2BF65',
+	flying: '#A98FF3',
+	psychic: '#F95587',
+	bug: '#A6B91A',
+	rock: '#B6A136',
+	ghost: '#735797',
+	dragon: '#6F35FC',
+	dark: '#705746',
+	steel: '#B7B7CE',
+	fairy: '#D685AD',
+};
+
+
 let pokemons = [];
 
 let more = 0;
@@ -13,19 +35,41 @@ async function showGallery() {
 
   for (let i = 0 + more; i < pokemons.length; i++) {
     contentRef.innerHTML += `
-    <div class="pokemon-card">
-    <div class="picture_name_card">${pokemons[i].name}
-      <img src="${pokemons[i].sprites.front_default}" class="smallphoto" onclick="showPhoto(${i})">
-    </div>
-    </div>`;
+      <div class="pokemon-card" id="card-${i}">
+        <span class="picture_name_card"><b>${first_uppercase(pokemons[i].name)}</b>
+        <img src="${pokemons[i].sprites.front_default}" class="smallphoto" onclick="showPhoto(${i})"><span>
+        <span>Type: ${pokemons[i].types.map(type => first_uppercase(type.type.name)).join(", ")}</span>
+      </div>`;
+
+    setColorType(i);
   }
 }
 
+function setColorType(i) {
+  const type = pokemons[i].types[0].type.name; 
+  console.log(type);
+
+  const card = document.getElementById(`card-${i}`);
+  card.style.setProperty("--pokemon-color", colours[type]);
+
+  console.log(colours[type]);
+}
+/* 
+types.map(type => first_uppercase(type.type.name))
+Für jedes type-Objekt im Array:
+Nimm type.type.name → z. B. "grass"
+Wende first_uppercase(...) an → "Grass"
+Ergebnis: ein neues Array mit den Typnamen großgeschrieben. */
+
+function first_uppercase(name) {
+  if (!name) return ""; /*!name prüft, ob name null, undefined, leerer String oder aus weiteren Gründen falsch ist. */
+  return name[0].toUpperCase() + name.slice(1);
+}
+   
 function loadMore() {
   more += 10;
   showGallery();
 }
-
 
 
 
@@ -41,12 +85,12 @@ async function fillarray() {
   }
 }
 
+
 async function init() {
   await fillarray();
   console.log(pokemons); // Jetzt sind sie drin
 }
 
-  
 
 function showPhoto(i) {
   let contentRef = document.getElementById("pokemon-list");
