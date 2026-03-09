@@ -10,19 +10,21 @@
   <body onload="showGallery()">
     <header id="header">
 
-      <div class="logo-group">
-      <p class="logo-pos foot_container">
+    <div class="logo-group">
+      <!-- <p class="logo-pos"> -- foot_container -->
         <img src="./img/alanyadk-pokemon-1536849_640.png" class="logo-size"/>
         <h1 class="sitename"> &nbsp;Pokedex</h1>
-      </p>
-    </div>
+      <!-- </p> -->
+    </div> 
      
-      <p class="search_container">
-        <form>
+
+      <!-- <p> -->
+        <form class="search_container">
           <input type="search" placeholder="Suchen …">
-          <button type="submit">🔍</button>
+          <button type="button" onclick="fillNameDictionary()">🔍</button>
         </form>
-      </p>      
+      <!-- </p>    -->
+        
     </header>
 
     <div id="mainpart">

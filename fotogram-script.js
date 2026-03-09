@@ -19,17 +19,42 @@ const colours = {
 	fairy: '#D685AD',
 };
 
+const nameDictionary = {};
 
 let pokemons = [];
 
 let more = 0;
+
+
+
+/* for (let i = 0; i < anzahl; i++) {
+  // Schlüssel (key) und Wert (value) dynamisch setzen
+  dictionary["key_" + i] = "Wert " + i;
+}
+
+console.log(dictionary); */
+
+async function fillNameDictionary() {
+  for (let id = 1 + more; id <= 10 + more; id++) {
+    try {
+      const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}/`);
+      const data = await response.json();
+      nameDictionary[id] = data.name;
+    } catch (error) {
+      console.error("Fehler:", error);
+    }
+  }
+  console.log(nameDictionary);
+  // console.log(pokemons); Zugriff auf den Namen des Pokémon
+}
+
 
 async function showGallery() {
   for (let id = 1 + more; id <= 10 + more; id++) {
     const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}/`);
     const data = await response.json();
     pokemons.push(data);
-  }
+    }
 
   let contentRef = document.getElementById("pokemon-list");
 
@@ -47,12 +72,8 @@ async function showGallery() {
 
 function setColorType(i) {
   const type = pokemons[i].types[0].type.name; 
-  console.log(type);
-
   const card = document.getElementById(`card-${i}`);
   card.style.setProperty("--pokemon-color", colours[type]);
-
-  console.log(colours[type]);
 }
 /* 
 types.map(type => first_uppercase(type.type.name))
