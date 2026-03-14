@@ -629,7 +629,7 @@ h1 {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #0b313f;
+  background-color: var(--pokemon-color);
   border-radius: 15px;  
 }
 
