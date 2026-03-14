@@ -42,18 +42,22 @@ async function fillNameDictionary() {
 }
 
 async function showLoadingSpinner() { 
-  let contentRef = document.getElementById("mainpart");
+  let contentRef = document.getElementById("pokemon-list");
   contentRef.innerHTML += `<div class="loading-spinner"></div>`; 
-  await delay(10000); 
+  await delay(3000); 
+  contentRef.innerHTML = "";
+  showGallery();
+  }
+
+function delay(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
 }
-
-
 
 
 
 async function showGallery() {
 
-  await showLoadingSpinner();  
+  // await showLoadingSpinner();  
   
   for (let id = 1 + more; id <= 10 + more; id++) {
     const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}/`);
@@ -139,6 +143,7 @@ function showPhoto(i) {
   roar(i);
   event.stopPropagation();
 }
+
 
 function showPhotoOnArrow(i) {
   if (i > 9 +  more) i = 0;
