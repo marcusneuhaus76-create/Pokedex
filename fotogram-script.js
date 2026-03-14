@@ -27,6 +27,7 @@ let more = 0;
 
 
 async function fillNameDictionary() {
+
   for (let id = 1 + more; id <= 10 + more; id++) {
     try {
       const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}/`);
@@ -40,8 +41,20 @@ async function fillNameDictionary() {
   // console.log(pokemons); Zugriff auf den Namen des Pokémon
 }
 
+async function showLoadingSpinner() { 
+  let contentRef = document.getElementById("mainpart");
+  contentRef.innerHTML += `<div class="loading-spinner"></div>`; 
+  await delay(10000); 
+}
+
+
+
+
 
 async function showGallery() {
+
+  await showLoadingSpinner();  
+  
   for (let id = 1 + more; id <= 10 + more; id++) {
     const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}/`);
     const data = await response.json();
@@ -138,6 +151,7 @@ function showPhotoOnArrow(i) {
                             <span id="picnumber" class="picture_number">${i + 1} / ${pokemons.length}</span>
                             <img src="./img/arrowright.png" class="arrowposition_right" onclick="showPhotoOnArrow(${i + 1})"> `
                             setColorTypeBig(i);
+                            roar(i);
 }
 
 function toggleStop() {

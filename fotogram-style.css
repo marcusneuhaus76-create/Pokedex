@@ -46,6 +46,16 @@ header {
   margin-right: 35px;
 }
 
+.loading-spinner {
+  background-image: url("./img/spiderweb.gif");  
+  width: 200px;
+  height: 200px;
+  margin: 40px auto;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
 
 .buttonposition {
   display: flex;
