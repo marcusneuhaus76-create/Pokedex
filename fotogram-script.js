@@ -54,6 +54,7 @@ async function showGallery() {
     const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}/`);
     const data = await response.json();
     pokemons.push(data);
+    console.log(pokemons);
     }
 
   let contentRef = document.getElementById("pokemon-list");
@@ -124,7 +125,7 @@ function showPhoto(i) {
   contentRef.innerHTML += ` 
   <div id="bspos" class="basicposition" onclick="toggleOverlay(this)">
     <div id="bscpos" class="bigphoto" onclick="toggleStop()">                                                              
-        <span class="picture_name">${pokemons[i].name}</span><b class="xclose" onclick="toggleOverlay()">X</b> 
+        <span class="picture_name">${first_uppercase(pokemons[i].name)}</span><b class="xclose" onclick="toggleOverlay()">X</b> 
         <img src="${pokemons[i].sprites.front_default}" class="bigphoto_size">
         <img src="./img/arrowleft.png" class="arrowposition_left" onclick="showPhotoOnArrow(${i - 1})">
         <span id="picnumber" class="picture_number">${i + 1} / ${pokemons.length}</span>
@@ -132,6 +133,8 @@ function showPhoto(i) {
     </div>
   </div>`;
 
+
+  // <span class="picture_name_card"><b>${first_uppercase(pokemons[i].name)}</b>
 
   event.stopPropagation();
 }
