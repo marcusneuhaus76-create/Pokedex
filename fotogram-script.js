@@ -72,13 +72,16 @@ async function showGallery() {
     contentRef.innerHTML += `
       <div class="pokemon-card" id="card-${i}" onclick="showPhoto(${i})">
         <span class="picture_name_card"><b>${first_uppercase(pokemons[i].name)}</b>
-        <img src="${pokemons[i].sprites.front_default}" class="smallphoto"><span>
+        <img src="${pokemons[i].sprites.other.home.front_shiny}" class="smallphoto"><span>
         <span>Type: ${pokemons[i].types.map(type => first_uppercase(type.type.name)).join(", ")}</span>
       </div>`;
 
     setColorType(i);
   }
-}
+} 
+
+ // <img src="${pokemons[i].sprites.front_default}" class="smallphoto"><span>
+ 
 
 function setColorType(i) {
   const type = pokemons[i].types[0].type.name; 
@@ -134,9 +137,17 @@ function showPhoto(i) {
     <div id="bscpos" class="bigphoto" onclick="toggleStop()">                                                              
         <span class="picture_name">${first_uppercase(pokemons[i].name)}</span><b class="xclose" onclick="toggleOverlay()">X</b> 
         <img src="${pokemons[i].sprites.front_default}" class="bigphoto_size">
+        <span id="long" class="height">Height: ${pokemons[i].height / 10} m</span>   
+        <span id="mass" class="weight">Weight: ${pokemons[i].weight / 10} kg</span> 
+        <span id="attacker" class="attack">Attack: ${pokemons[i].stats[1].base_stat}</span>
+        <span id="defender" class="defense">Defense: ${pokemons[i].stats[2].base_stat}</span>
+       
         <img src="./img/arrowleft.png" class="arrowposition_left" onclick="showPhotoOnArrow(${i - 1})">
         <span id="picnumber" class="picture_number">${i + 1} / ${pokemons.length}</span>
-        <img src="./img/arrowright.png" class="arrowposition_right" onclick="showPhotoOnArrow(${i + 1})">                                                                      
+        <img src="./img/arrowright.png" class="arrowposition_right" onclick="showPhotoOnArrow(${i + 1})"> <br><br>
+        
+      
+                                                                        
     </div>
   </div>`
   setColorTypeBig(i);

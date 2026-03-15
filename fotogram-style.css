@@ -76,6 +76,7 @@ header {
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  background-position: center;
 }
 
 .pokemon-card {
@@ -150,19 +151,6 @@ body {
   }
 }
 
-/* .element {
-}
- */
-/* header {
-  display: flex;
-  box-shadow: 1px -4px 10px 0;
-  height: 100px;
-  top: 0;
-  left: 0;
-  width: 100%;
-  background-color: grey;  
-} */
-
 @media (max-height: 620px) {
   header {
     display: flex;
@@ -225,14 +213,6 @@ h1 {
   }
 }
 
-/* .logo-pos {
-  position: relative;
-  margin-top: 35px;
-  margin-left: 35px;
-  display: flex;
-  justify-content: flex-start;
-  align-items: left;
-} */
 
 @media (max-height: 588px) {
   .logo-pos {
@@ -256,12 +236,6 @@ h1 {
   }
 }
 
-/* .logo-size {
-  margin-left: 35px;
-  width: 64px;
-  height: 64px;
-  border-radius: 0px;
-} */
 
 @media (max-height: 670px) or (max-width: 640px) {
   .logo-size {
@@ -389,14 +363,64 @@ h1 {
   }
 }
 
+
+.height {
+  font-size: 15px;
+  color: whitesmoke;
+  font-family: Figtree-Light;
+  display: flex;
+  position: absolute;
+  left: 20px;
+  top: 420px;  
+}
+
+.weight {
+  font-size: 15px;
+  color: whitesmoke;
+  font-family: Figtree-Light;
+  display: flex;
+  position: absolute;
+  left: 20px;
+  top: 440px;  
+}
+
+.attack {
+  font-size: 15px;
+  color: whitesmoke;
+  font-family: Figtree-Light;
+  display: flex;
+  position: absolute;
+  left: 20px;
+  top: 460px;  
+}
+
+.defense {
+  font-size: 15px;
+  color: whitesmoke;
+  font-family: Figtree-Light;
+  display: flex;
+  position: absolute;
+  left: 20px;
+  top: 480px;  
+}
+
+.moves {
+  font-size: 15px;
+  color: whitesmoke;
+  font-family: Figtree-Light;
+  display: flex;
+  position: absolute;
+  left: 20px;
+  top: 500px;  
+}
+
 .arrowposition_right {
   display: flex;
   position: absolute;
   justify-content: flex-end;
   align-items: flex-end;
   bottom: 33px;
-  right: 90px;
-  
+  right: 90px;  
 }
 
 @media (max-height: 760px) {
