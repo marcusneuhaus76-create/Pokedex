@@ -25,6 +25,8 @@ let pokemons = [];
 
 let more = 0;
 
+let imageMode = "normal";
+
 
 async function fillNameDictionary() {
 
@@ -46,13 +48,48 @@ async function showLoadingSpinner() {
   contentRef.innerHTML += `<div class="loading-spinner"></div>`; 
   await delay(3000); 
   contentRef.innerHTML = "";
-  showGallery();
+  showGallery(); 
+  showLoadButton(); 
   }
 
 function delay(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
+async function showLoadButton() {
+  let contentRef = document.getElementById("loading");
+  contentRef.innerHTML += `<button class="morebutton" onclick="loadMore()">Load More</button>`;
+}
+
+function showButtons() {
+  let contentRef = document.getElementById("pokemon-list");
+  contentRef.innerHTML += `<button onclick="setNormal()">Normal</button>
+                           <button onclick="setShiny()">Shiny</button>`;}
+
+
+/* async function showGallery() {
+
+  // await showLoadingSpinner();  
+  
+  for (let id = 1 + more; id <= 10 + more; id++) {
+    const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}/`);
+    const data = await response.json();
+    pokemons.push(data);
+    console.log(pokemons);
+    }
+
+  let contentRef = document.getElementById("pokemon-list");
+
+  for (let i = 0 + more; i < pokemons.length; i++) {
+    contentRef.innerHTML += `
+      <div class="pokemon-card" id="card-${i}" onclick="showPhoto(${i})">
+        <span class="picture_name_card"><b>${first_uppercase(pokemons[i].name)}</b>
+        <img src="${pokemons[i].sprites.other.home.front_shiny}" class="smallphoto"><span>
+        <span>Type: ${pokemons[i].types.map(type => first_uppercase(type.type.name)).join(", ")}</span>
+      </div>`;
+    setColorType(i);
+  }
+} */
 
 
 async function showGallery() {
@@ -74,11 +111,10 @@ async function showGallery() {
         <span class="picture_name_card"><b>${first_uppercase(pokemons[i].name)}</b>
         <img src="${pokemons[i].sprites.other.home.front_shiny}" class="smallphoto"><span>
         <span>Type: ${pokemons[i].types.map(type => first_uppercase(type.type.name)).join(", ")}</span>
-      </div>`;
-
-    setColorType(i);
-  }
-} 
+      </div>`;    
+      setColorType(i);
+      }      
+    }  
 
  // <img src="${pokemons[i].sprites.front_default}" class="smallphoto"><span>
  
@@ -140,14 +176,10 @@ function showPhoto(i) {
         <span id="long" class="height">Height: ${pokemons[i].height / 10} m</span>   
         <span id="mass" class="weight">Weight: ${pokemons[i].weight / 10} kg</span> 
         <span id="attacker" class="attack">Attack: ${pokemons[i].stats[1].base_stat}</span>
-        <span id="defender" class="defense">Defense: ${pokemons[i].stats[2].base_stat}</span>
-       
+        <span id="defender" class="defense">Defense: ${pokemons[i].stats[2].base_stat}</span>       
         <img src="./img/arrowleft.png" class="arrowposition_left" onclick="showPhotoOnArrow(${i - 1})">
         <span id="picnumber" class="picture_number">${i + 1} / ${pokemons.length}</span>
-        <img src="./img/arrowright.png" class="arrowposition_right" onclick="showPhotoOnArrow(${i + 1})"> <br><br>
-        
-      
-                                                                        
+        <img src="./img/arrowright.png" class="arrowposition_right" onclick="showPhotoOnArrow(${i + 1})"> <br><br>                                                                          
     </div>
   </div>`
   setColorTypeBig(i);
