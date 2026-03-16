@@ -48,7 +48,8 @@ async function showLoadingSpinner() {
   contentRef.innerHTML += `<div class="loading-spinner"></div>`; 
   await delay(3000); 
   contentRef.innerHTML = "";
-  showGallery(); 
+  showButtons();
+  showGallery(imageMode); 
   showLoadButton(); 
   }
 
@@ -62,7 +63,7 @@ async function showLoadButton() {
 }
 
 function showButtons() {
-  let contentRef = document.getElementById("pokemon-list");
+  let contentRef = document.getElementById("mainpart");
   contentRef.innerHTML += `<button onclick="setNormal()">Normal</button>
                            <button onclick="setShiny()">Shiny</button>`;}
 
@@ -92,7 +93,7 @@ function showButtons() {
 } */
 
 
-async function showGallery() {
+async function showGallery(imageMode) {
 
   // await showLoadingSpinner();  
   
@@ -109,15 +110,15 @@ async function showGallery() {
     contentRef.innerHTML += `
       <div class="pokemon-card" id="card-${i}" onclick="showPhoto(${i})">
         <span class="picture_name_card"><b>${first_uppercase(pokemons[i].name)}</b>
-        <img src="${pokemons[i].sprites.other.home.front_shiny}" class="smallphoto"><span>
-        <span>Type: ${pokemons[i].types.map(type => first_uppercase(type.type.name)).join(", ")}</span>
+        <img src="${getPokemonImage(i)}" class="smallphoto"><span>
+        <span>Type: ${pokemons[i].types.map(type => first_uppercase(type.type.name)).join(", ")}</span></span>
       </div>`;    
       setColorType(i);
       }      
     }  
 
  // <img src="${pokemons[i].sprites.front_default}" class="smallphoto"><span>
- 
+ // <img src="${pokemons[i].sprites.other.home.front_shiny}" class="smallphoto"><span>
 
 function setColorType(i) {
   const type = pokemons[i].types[0].type.name; 
@@ -139,7 +140,7 @@ function first_uppercase(name) {
    
 function loadMore() {
   more += 10;
-  showGallery();
+  showLoadingSpinner();
 }
 
 
@@ -240,3 +241,24 @@ function roar(id) {
     })
     .catch(error => console.error("Fehler:", error));
   }
+
+function setNormal() {
+  imageMode = "normal";
+  console.log(imageMode);
+  showGallery(imageMode);
+}
+
+function setShiny() {
+  imageMode = "shiny";
+  console.log(imageMode);
+  showGallery(imageMode);
+}
+
+
+function getPokemonImage(i) {
+  if (imageMode === "shiny") {
+    return pokemons[i].sprites.other.home.front_shiny;
+  } else {
+    return pokemons[i].sprites.front_default;
+  }
+}
