@@ -30,6 +30,8 @@ let imageMode = "normal";
 
 async function fillNameDictionary() {
 
+  // Leere das Array, um die neuen Daten zu speichern
+
   for (let id = 1 + more; id <= 10 + more; id++) {
     try {
       const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}/`);
@@ -47,10 +49,10 @@ async function showLoadingSpinner() {
   let contentRef = document.getElementById("pokemon-list");
   contentRef.innerHTML += `<div class="loading-spinner"></div>`; 
   await delay(3000); 
-  contentRef.innerHTML = "";
-  showButtons();
-  showGallery(imageMode); 
+  contentRef.innerHTML = "";    
   showLoadButton(); 
+  showButtons();
+  showGallery(); 
   }
 
 function delay(ms) {
@@ -59,44 +61,25 @@ function delay(ms) {
 
 async function showLoadButton() {
   let contentRef = document.getElementById("loading");
+  contentRef.innerHTML = "";
   contentRef.innerHTML += `<button class="morebutton" onclick="loadMore()">Load More</button>`;
 }
 
 function showButtons() {
-  let contentRef = document.getElementById("mainpart");
+  let contentRef = document.getElementById("mainpart");  
+  contentRef.innerHTML = "";
   contentRef.innerHTML += `<button onclick="setNormal()">Normal</button>
-                           <button onclick="setShiny()">Shiny</button>`;}
-
-
-/* async function showGallery() {
-
-  // await showLoadingSpinner();  
-  
-  for (let id = 1 + more; id <= 10 + more; id++) {
-    const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}/`);
-    const data = await response.json();
-    pokemons.push(data);
-    console.log(pokemons);
-    }
-
-  let contentRef = document.getElementById("pokemon-list");
-
-  for (let i = 0 + more; i < pokemons.length; i++) {
-    contentRef.innerHTML += `
-      <div class="pokemon-card" id="card-${i}" onclick="showPhoto(${i})">
-        <span class="picture_name_card"><b>${first_uppercase(pokemons[i].name)}</b>
-        <img src="${pokemons[i].sprites.other.home.front_shiny}" class="smallphoto"><span>
-        <span>Type: ${pokemons[i].types.map(type => first_uppercase(type.type.name)).join(", ")}</span>
-      </div>`;
-    setColorType(i);
+                          <button onclick="setShiny()">Shiny</button>`;
   }
-} */
 
 
-async function showGallery(imageMode) {
+
+
+async function showGallery() {
 
   // await showLoadingSpinner();  
-  
+  //  pokemons.length = 0;
+
   for (let id = 1 + more; id <= 10 + more; id++) {
     const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}/`);
     const data = await response.json();
@@ -105,7 +88,7 @@ async function showGallery(imageMode) {
     }
 
   let contentRef = document.getElementById("pokemon-list");
-
+  contentRef.innerHTML = "";
   for (let i = 0 + more; i < pokemons.length; i++) {
     contentRef.innerHTML += `
       <div class="pokemon-card" id="card-${i}" onclick="showPhoto(${i})">
@@ -220,17 +203,6 @@ function toggleOverlay(img) {
 }
 
 
-/* 
-async function showGallery() {
-  fillarray();
-  init();
-  console.log(pokemons);
-  let contentRef = document.getElementById("pokemon-list");
-  for (i = 0; i < pokemons.length; i++) {
-    contentRef.innerHTML += `<img src="${pokemons[i].sprites.front_default}" class="smallphoto" onclick="showPhoto(${i})">`;
-  }
-} */
-
 function roar(id) {  
   fetch(`https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/${id}.ogg`)
     .then(response => response.blob()) // Das Ergebnis von response ist die heuntergeladene Datei, aber noch nicht als abspielbares Audio. Mit "response.blob()" wird die geladene Datei in ein Blob umgewandelt.
@@ -242,16 +214,15 @@ function roar(id) {
     .catch(error => console.error("Fehler:", error));
   }
 
-function setNormal() {
+function setNormal(more) {
   imageMode = "normal";
   console.log(imageMode);
-  showGallery(imageMode);
+  showGallery();
 }
 
 function setShiny() {
-  imageMode = "shiny";
-  console.log(imageMode);
-  showGallery(imageMode);
+  imageMode = "shiny";  console.log(imageMode);
+  showGallery();
 }
 
 
@@ -262,3 +233,31 @@ function getPokemonImage(i) {
     return pokemons[i].sprites.front_default;
   }
 }
+
+
+
+
+
+/* async function showGallery() {
+
+  // await showLoadingSpinner();  
+  
+  for (let id = 1 + more; id <= 10 + more; id++) {
+    const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}/`);
+    const data = await response.json();
+    pokemons.push(data);
+    console.log(pokemons);
+    }
+
+  let contentRef = document.getElementById("pokemon-list");
+
+  for (let i = 0 + more; i < pokemons.length; i++) {
+    contentRef.innerHTML += `
+      <div class="pokemon-card" id="card-${i}" onclick="showPhoto(${i})">
+        <span class="picture_name_card"><b>${first_uppercase(pokemons[i].name)}</b>
+        <img src="${pokemons[i].sprites.other.home.front_shiny}" class="smallphoto"><span>
+        <span>Type: ${pokemons[i].types.map(type => first_uppercase(type.type.name)).join(", ")}</span>
+      </div>`;
+    setColorType(i);
+  }
+} */
