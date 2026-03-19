@@ -32,7 +32,8 @@ async function fillNameDictionary() {
 
   // Leere das Array, um die neuen Daten zu speichern
 
-  for (let id = 1 + more; id <= 10 + more; id++) {
+  // for (let id = 1 + more; id <= 10 + more; id++) {
+  for (let id = 1; id <= 10 + more; id++) {  
     try {
       const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}/`);
       const data = await response.json();
@@ -78,9 +79,10 @@ function showButtons() {
 async function showGallery() {
 
   // await showLoadingSpinner();  
-  //  pokemons.length = 0;
+  pokemons.length = 0;
 
-  for (let id = 1 + more; id <= 10 + more; id++) {
+  // for (let id = 1 + more; id <= 10 + more; id++) {
+  for (let id = 1; id <= 10 + more; id++) {
     const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}/`);
     const data = await response.json();
     pokemons.push(data);
@@ -89,7 +91,7 @@ async function showGallery() {
 
   let contentRef = document.getElementById("pokemon-list");
   contentRef.innerHTML = "";
-  for (let i = 0 + more; i < pokemons.length; i++) {
+  for (let i = 0; i < pokemons.length; i++) {
     contentRef.innerHTML += `
       <div class="pokemon-card" id="card-${i}" onclick="showPhoto(${i})">
         <span class="picture_name_card"><b>${first_uppercase(pokemons[i].name)}</b>
@@ -123,7 +125,9 @@ function first_uppercase(name) {
    
 function loadMore() {
   more += 10;
+  // showGallery();
   showLoadingSpinner();
+  return more;
 }
 
 
@@ -214,7 +218,7 @@ function roar(id) {
     .catch(error => console.error("Fehler:", error));
   }
 
-function setNormal(more) {
+function setNormal() {
   imageMode = "normal";
   console.log(imageMode);
   showGallery();
