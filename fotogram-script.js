@@ -160,15 +160,11 @@ function showPhoto(i) {
   contentRef.innerHTML += ` 
   <div id="bspos" class="basicposition" onclick="toggleOverlay(this)">
     <div id="bscpos" class="bigphoto" onclick="toggleStop()">                                                              
-        <span class="picture_name">${first_uppercase(pokemons[i].name)}</span><b class="xclose" onclick="toggleOverlay()">X</b> 
-        <img src="${pokemons[i].sprites.front_default}" class="bigphoto_size">
-        <span id="long" class="height">Height: ${pokemons[i].height / 10} m</span>   
-        <span id="mass" class="weight">Weight: ${pokemons[i].weight / 10} kg</span> 
-        <span id="attacker" class="attack">Attack: ${pokemons[i].stats[1].base_stat}</span>
-        <span id="defender" class="defense">Defense: ${pokemons[i].stats[2].base_stat}</span>       
-        <img src="./img/arrowleft.png" class="arrowposition_left" onclick="showPhotoOnArrow(${i - 1})">
-        <span id="picnumber" class="picture_number">${i + 1} / ${pokemons.length}</span>
-        <img src="./img/arrowright.png" class="arrowposition_right" onclick="showPhotoOnArrow(${i + 1})"> <br><br>                                                                          
+        <span class="picture_name">${first_uppercase(pokemons[i].name)}</span><b class="xclose" onclick="toggleOverlay()">X</b>              
+        <img src="${getPokemonImage(i)}" class="bigphoto_size ${getScaleClass()}">
+       
+        ${getPokemonDetailsHTML(i)}
+        
     </div>
   </div>`
   setColorTypeBig(i);
@@ -183,13 +179,29 @@ function showPhotoOnArrow(i) {
   let contentRef = document.getElementById(`bscpos`);
 
   contentRef.innerHTML = `<span class="picture_name">${first_uppercase(pokemons[i].name)}</span><b class="xclose" onclick="toggleOverlay()">X</b> 
-                            <img src="${pokemons[i].sprites.front_default}" class="bigphoto_size">
+                            <img src="${getPokemonImage(i)}" class="bigphoto_size ${getScaleClass()}">
                             <img src="./img/arrowleft.png" class="arrowposition_left" onclick="showPhotoOnArrow(${i - 1})">
                             <span id="picnumber" class="picture_number">${i + 1} / ${pokemons.length}</span>
-                            <img src="./img/arrowright.png" class="arrowposition_right" onclick="showPhotoOnArrow(${i + 1})"> `
+                            <img src="./img/arrowright.png" class="arrowposition_right" onclick="showPhotoOnArrow(${i + 1})"> 
+                            ${getPokemonDetailsHTML(i)}`
                             setColorTypeBig(i);
                             roar(i);
+                            event.stopPropagation();
 }
+
+
+function getPokemonDetailsHTML(i) {
+  return `
+    <span id="long" class="height">Height: ${pokemons[i].height / 10} m</span>   
+    <span id="mass" class="weight">Weight: ${pokemons[i].weight / 10} kg</span> 
+    <span id="attacker" class="attack">Attack: ${pokemons[i].stats[1].base_stat}</span>
+    <span id="defender" class="defense">Defense: ${pokemons[i].stats[2].base_stat}</span>       
+    <img src="./img/arrowleft.png" class="arrowposition_left" onclick="showPhotoOnArrow(${i - 1})">
+    <span id="picnumber" class="picture_number">${i + 1} / ${pokemons.length}</span>
+    <img src="./img/arrowright.png" class="arrowposition_right" onclick="showPhotoOnArrow(${i + 1})">
+    <br><br>`;
+}
+
 
 function toggleStop() {
   event.stopPropagation();
@@ -227,7 +239,8 @@ function setNormal() {
 }
 
 function setShiny() {
-  imageMode = "shiny";  console.log(imageMode);
+  imageMode = "shiny";  
+  console.log(imageMode);
   showGallery();
 }
 
@@ -240,9 +253,18 @@ function getPokemonImage(i) {
   }
 }
 
+/* 
+function getScaleClass() {
+  return imageMode === "shiny" ? "bigphoto_shiny" : "bigphoto_normal";
+} */
 
-
-
+function getScaleClass() {
+  if (imageMode === "shiny") {
+    return "bigphoto_shiny";
+  } else {
+    return "bigphoto_normal";
+  }
+}
 
 /* async function showGallery() {
 
@@ -266,4 +288,47 @@ function getPokemonImage(i) {
       </div>`;
     setColorType(i);
   }
-} */
+} 
+  
+<img src="${getPokemonImage(i)}" class="bigphoto_size">
+<img src="${pokemons[i].sprites.front_default}" class="bigphoto_size">
+
+<img src="${getPokemonImage(i)}" class="bigphoto_size">
+
+<img src="${pokemons[i].sprites.front_default}" class="bigphoto_size">
+
+
+<img src="./img/arrowleft.png" class="arrowposition_left" onclick="showPhotoOnArrow(${i - 1})">
+
+  <img src="./img/arrowright.png" class="arrowposition_right" onclick="showPhotoOnArrow(${i + 1})"> <br><br>   
+
+
+
+
+  function showPhoto(i) {
+  let contentRef = document.getElementById("pokemon-list");
+
+  if (!document.getElementById("bildOverlay")) {
+    contentRef.innerHTML += `<div id="bildOverlay" class="overlay" onclick="toggleOverlay()"></div>`;
+  }
+
+  contentRef.innerHTML += ` 
+  <div id="bspos" class="basicposition" onclick="toggleOverlay(this)">
+    <div id="bscpos" class="bigphoto" onclick="toggleStop()">                                                              
+        <span class="picture_name">${first_uppercase(pokemons[i].name)}</span><b class="xclose" onclick="toggleOverlay()">X</b>              
+        <img src="${getPokemonImage(i)}" class="bigphoto_size ${getScaleClass()}">
+        <span id="long" class="height">Height: ${pokemons[i].height / 10} m</span>   
+        <span id="mass" class="weight">Weight: ${pokemons[i].weight / 10} kg</span> 
+        <span id="attacker" class="attack">Attack: ${pokemons[i].stats[1].base_stat}</span>
+        <span id="defender" class="defense">Defense: ${pokemons[i].stats[2].base_stat}</span>       
+        <img src="./img/arrowleft.png" class="arrowposition_left" onclick="showPhotoOnArrow(${i - 1})">
+        <span id="picnumber" class="picture_number">${i + 1} / ${pokemons.length}</span>
+        <img src="./img/arrowright.png" class="arrowposition_right" onclick="showPhotoOnArrow(${i + 1})"> <br><br>                                                                          
+    </div>
+  </div>`
+  setColorTypeBig(i);
+  roar(i);
+  event.stopPropagation();
+}
+
+*/

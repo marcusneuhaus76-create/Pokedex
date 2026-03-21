@@ -825,14 +825,33 @@ h1 {
   }
 }
 
+
+.bigphoto_normal {
+  transform: scale(3.2);
+}
+
+.bigphoto_shiny {
+  transform: scale(0.6);
+}
+
 .bigphoto_size {
   max-width: 500px;
   max-height: 500px;
-  transform: scale(3);
+  /* transform: scale(3); */
   height: auto;
   border: 5px solid white;
   margin-bottom: 180px;
 }
+
+.bigphoto_size_shiny {
+  max-width: 500px;
+  max-height: 500px;
+  /* transform: scale(0.5); */
+  height: auto;
+  border: 5px solid white;
+  margin-bottom: 180px;
+}
+ 
 
 @media (max-width: 380px) {
   .bigphoto_size {
