@@ -48,6 +48,7 @@ async function fillNameDictionary() {
 
 async function showLoadingSpinner() { 
   let contentRef = document.getElementById("pokemon-list");
+  contentRef.innerHTML = "";
   contentRef.innerHTML += `<div class="loading-spinner"></div>`; 
   await delay(3000); 
   contentRef.innerHTML = "";    
@@ -70,7 +71,7 @@ function showButtons() {
   let contentRef = document.getElementById("mainpart");  
   contentRef.innerHTML = "";
   contentRef.innerHTML += `<button onclick="setNormal()">Normal</button>
-                          <button onclick="setShiny()">Shiny</button>`;
+                           <button onclick="setShiny()">Shiny</button>`;
   }
 
 
@@ -208,7 +209,8 @@ function toggleOverlay(img) {
 
 
 function roar(id) {  
-  fetch(`https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/${id}.ogg`)
+  // fetch(`https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/${id}.ogg`)
+  fetch(`https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/${id}.ogg`)
     .then(response => response.blob()) // Das Ergebnis von response ist die heuntergeladene Datei, aber noch nicht als abspielbares Audio. Mit "response.blob()" wird die geladene Datei in ein Blob umgewandelt.
     .then(blob => { // Blob = Binary Large Object ist ein Object, das Audio, Video oder ein Bild enthält.
       const audioURL = URL.createObjectURL(blob); //eine lokale URL, die der Browser abspielen kann wird in der Datei audioURL gespeichert. 
