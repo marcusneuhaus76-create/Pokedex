@@ -19,9 +19,13 @@ const colours = {
 	fairy: '#D685AD',
 };
 
-const nameDictionary = {};
+// const nameDictionary = {};
+
+const nameDictionary = [];
 
 let pokemons = [];
+
+let pokemonNames = [];
 
 let more = 0;
 
@@ -29,7 +33,6 @@ let imageMode = "normal";
 
 
 async function fillNameDictionary() {
-
   // Leere das Array, um die neuen Daten zu speichern
 
   // for (let id = 1 + more; id <= 10 + more; id++) {
@@ -54,18 +57,22 @@ async function showLoadingSpinner() {
   contentRef.innerHTML = "";    
   showLoadButton(); 
   showButtons();
-  showGallery(); 
+  showGallery();
+  fillarray();   
   }
+
 
 function delay(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
+
 
 async function showLoadButton() {
   let contentRef = document.getElementById("loading");
   contentRef.innerHTML = "";
   contentRef.innerHTML += `<button class="morebutton" onclick="loadMore()">Load More</button>`;
 }
+
 
 function showButtons() {
   let contentRef = document.getElementById("mainpart");  
@@ -75,13 +82,9 @@ function showButtons() {
   }
 
 
-
-
 async function showGallery() {
-
   // await showLoadingSpinner();  
   pokemons.length = 0;
-
   // for (let id = 1 + more; id <= 10 + more; id++) {
   for (let id = 1; id <= 10 + more; id++) {
     const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}/`);
@@ -89,8 +92,16 @@ async function showGallery() {
     pokemons.push(data);
     console.log(pokemons);
     }
+  renderPokemonCard();  
+}
 
-  let contentRef = document.getElementById("pokemon-list");
+  
+
+ // <img src="${pokemons[i].sprites.front_default}" class="smallphoto"><span>
+ // <img src="${pokemons[i].sprites.other.home.front_shiny}" class="smallphoto"><span>
+
+function renderPokemonCard() {
+    let contentRef = document.getElementById("pokemon-list");
   contentRef.innerHTML = "";
   for (let i = 0; i < pokemons.length; i++) {
     contentRef.innerHTML += `
@@ -103,14 +114,12 @@ async function showGallery() {
       }      
     }  
 
- // <img src="${pokemons[i].sprites.front_default}" class="smallphoto"><span>
- // <img src="${pokemons[i].sprites.other.home.front_shiny}" class="smallphoto"><span>
-
 function setColorType(i) {
   const type = pokemons[i].types[0].type.name; 
   const card = document.getElementById(`card-${i}`);
   card.style.setProperty("--pokemon-color", colours[type]);
 }
+
 
 function setColorTypeBig(i) {
   const type = pokemons[i].types[0].type.name; 
@@ -124,6 +133,7 @@ function first_uppercase(name) {
   return name[0].toUpperCase() + name.slice(1);
 }
    
+
 function loadMore() {
   more += 10;
   // showGallery();
@@ -135,36 +145,35 @@ function loadMore() {
 async function fillarray() {
   for (let id = 1 + more; id <= 10 + more; id++) {
     try {
-      const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}/`);
+      const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
       const data = await response.json();
-      pokemons.push(data);
+      console.log(data.name); // Zugriff auf den Namen des Pokémon
+      nameDictionary.push(data.name);
     } catch (error) {
       console.error("Fehler:", error);
     }
   }
+  console.log(nameDictionary); 
 }
+
 
 async function init() {
   await fillarray();
-  console.log(pokemons); // Jetzt sind sie drin
+  console.log(nameDictionary); // Jetzt sind sie drin
 }
 
 
 function showPhoto(i) {
   let contentRef = document.getElementById("pokemon-list");
-
   if (!document.getElementById("bildOverlay")) {
     contentRef.innerHTML += `<div id="bildOverlay" class="overlay" onclick="toggleOverlay()"></div>`;
   }
-
   contentRef.innerHTML += ` 
   <div id="bspos" class="basicposition" onclick="toggleOverlay(this)">
     <div id="bscpos" class="bigphoto" onclick="toggleStop()">                                                              
         <span class="picture_name">${first_uppercase(pokemons[i].name)}</span><b class="xclose" onclick="toggleOverlay()">X</b>              
-        <img src="${getPokemonImage(i)}" class="bigphoto_size ${getScaleClass()}">
-       
-        ${getPokemonDetailsHTML(i)}
-        
+        <img src="${getPokemonImage(i)}" class="bigphoto_size ${getScaleClass()}">       
+        ${getPokemonDetailsHTML(i)}        
     </div>
   </div>`
   setColorTypeBig(i);
@@ -177,7 +186,6 @@ function showPhotoOnArrow(i) {
   if (i > 9 +  more) i = 0;
   if (i < 0) i = 9 + more;
   let contentRef = document.getElementById(`bscpos`);
-
   contentRef.innerHTML = `<span class="picture_name">${first_uppercase(pokemons[i].name)}</span><b class="xclose" onclick="toggleOverlay()">X</b> 
                             <img src="${getPokemonImage(i)}" class="bigphoto_size ${getScaleClass()}">
                             <img src="./img/arrowleft.png" class="arrowposition_left" onclick="showPhotoOnArrow(${i - 1})">
@@ -232,11 +240,13 @@ function roar(id) {
     .catch(error => console.error("Fehler:", error));
   }
 
+
 function setNormal() {
   imageMode = "normal";
   console.log(imageMode);
   showGallery();
 }
+
 
 function setShiny() {
   imageMode = "shiny";  
@@ -253,10 +263,6 @@ function getPokemonImage(i) {
   }
 }
 
-/* 
-function getScaleClass() {
-  return imageMode === "shiny" ? "bigphoto_shiny" : "bigphoto_normal";
-} */
 
 function getScaleClass() {
   if (imageMode === "shiny") {
@@ -266,7 +272,61 @@ function getScaleClass() {
   }
 }
 
-/* async function showGallery() {
+
+function getSearchInput() {
+     document.getElementById("btn").addEventListener("click", () => {
+        const textInput = document.getElementById("searchInput").value;
+        const result = filter(textInput.toLowerCase());
+        // pokemons = filteredPokemons;
+        pokemons = pokemons.filter(function(pokemon) {
+        return pokemonNames.includes(pokemon.name);
+        });
+        console.log(result);
+        });
+        renderPokemonCard()
+      }
+
+
+function startsWithInput(str) {
+  return str.startsWith(input);
+}
+
+// const result = arr.filter(startsWithInput);
+
+
+function filter(textInput) {
+  return nameDictionary.filter(function(str) {
+    return str.startsWith(textInput);
+  });
+}
+
+
+
+
+/* 
+function filter() {
+  nameDictionary.filter(startsWith("bulb"));
+  return result;
+}
+
+ */
+
+/* const arr = ["apple", "banana", "apricot", "berry"];
+
+const result = arr.filter(str => str.startsWith("ap"));
+
+console.log(result); */
+// ["apple", "apricot"]
+
+/*
+
+document.getElementById("demo").innerHTML = ages.filter(checkAdult);
+
+function checkAdult(age) {
+  return age >= 18;
+}
+
+ async function showGallery() {
 
   // await showLoadingSpinner();  
   
@@ -332,3 +392,5 @@ function getScaleClass() {
 }
 
 */
+
+
