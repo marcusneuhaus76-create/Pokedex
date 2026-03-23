@@ -90,9 +90,9 @@ async function showGallery() {
     const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}/`);
     const data = await response.json();
     pokemons.push(data);
-    console.log(pokemons);
+    console.log("Pokemons-Array:", pokemons);
     }
-  renderPokemonCard();  
+  renderPokemonCard(pokemons);  
 }
 
   
@@ -100,7 +100,8 @@ async function showGallery() {
  // <img src="${pokemons[i].sprites.front_default}" class="smallphoto"><span>
  // <img src="${pokemons[i].sprites.other.home.front_shiny}" class="smallphoto"><span>
 
-function renderPokemonCard() {
+function renderPokemonCard(pokemons) {
+    console.log("Länge des Pokemons-Arrays:", pokemons.length);
     let contentRef = document.getElementById("pokemon-list");
   contentRef.innerHTML = "";
   for (let i = 0; i < pokemons.length; i++) {
@@ -147,19 +148,19 @@ async function fillarray() {
     try {
       const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
       const data = await response.json();
-      console.log(data.name); // Zugriff auf den Namen des Pokémon
+      console.log("Name des Pokémon, Funktion fillarray mit data.name:", data.name); // Zugriff auf den Namen des Pokémon
       nameDictionary.push(data.name);
     } catch (error) {
       console.error("Fehler:", error);
     }
   }
-  console.log(nameDictionary); 
+  console.log("Gefilterte Pokemons aus Funktion 'fillarray' aus nameDictionary:", nameDictionary); 
 }
 
 
 async function init() {
   await fillarray();
-  console.log(nameDictionary); // Jetzt sind sie drin
+  console.log("Pokemons aus Funktion 'init' aus nameDictionary:", nameDictionary); // Jetzt sind sie drin
 }
 
 
@@ -278,12 +279,13 @@ function getSearchInput() {
         const textInput = document.getElementById("searchInput").value;
         const result = filter(textInput.toLowerCase());
         // pokemons = filteredPokemons;
+        console.log("Inhalt der Suchvariable:", result);
         pokemons = pokemons.filter(function(pokemon) {
-        return pokemonNames.includes(pokemon.name);
+        return pokemon.name.includes(result);
         });
-        console.log(result);
+        console.log("Gefilterte Pokemons:", pokemons);
         });
-        renderPokemonCard()
+        renderPokemonCard(pokemons)
       }
 
 
