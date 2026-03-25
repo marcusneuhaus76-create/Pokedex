@@ -217,16 +217,52 @@ function toggleStop() {
 }
 
 
+/* function toggleOverlay(img) {
+  let overlay = document.getElementById("bildOverlay");
+  
+  if (overlay) {overlay.remove(); 
+    document.body.style.overflow = "";
+    document.body.style.backgroundAttachment = "";
+    document.documentElement.style.overflow = "";
+    document.documentElement.style.backgroundAttachment = "" ;
+    
+  } else {   
+  
+    document.body.style.overflow = "hidden";
+    document.body.style.backgroundAttachment = "fixed";
+    document.documentElement.style.overflow = "hidden";  
+    document.documentElement.style.backgroundAttachment = "fixed";}
+
+  let frame = document.getElementById("bspos");
+  if (frame) frame.remove();   
+
+  let card = img.closest(".pokemon-card");
+  card.classList.toggle("big"); 
+}*/
+
 function toggleOverlay(img) {
   let overlay = document.getElementById("bildOverlay");
-  if (overlay) overlay.remove(); 
   
+  if (overlay) {
+    overlay.remove(); 
+    
+    document.body.style.overflow = "";
+    document.body.style.backgroundAttachment = "";
+    document.documentElement.style.overflow = "";
+    document.documentElement.style.backgroundAttachment = "";
+    
+  } else {   
+    document.body.style.overflow = "hidden";
+    document.body.style.backgroundAttachment = "fixed";
+    document.documentElement.style.overflow = "hidden";  
+    document.documentElement.style.backgroundAttachment = "fixed";
+
   let frame = document.getElementById("bspos");
   if (frame) frame.remove();   
 
   let card = img.closest(".pokemon-card");
   card.classList.toggle("big");
-}
+} }
 
 
 function roar(id) {  

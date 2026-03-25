@@ -1,3 +1,13 @@
+
+ html,body {
+  background-color: rgba(0, 0, 0, 0.8);
+  /* overflow: scroll; */
+ /*  background-attachment:;
+  overflow: ;  */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
 header {
   display: flex;
   flex-wrap: wrap;
@@ -13,6 +23,7 @@ header {
   background-color: #082129;
   
 }
+
 
 
 .logo-group {
@@ -114,13 +125,7 @@ header {
   font-style: normal;
 }
 
-html,
-body {
-  background-color: rgba(0, 0, 0, 0.8);
-  overflow: scroll;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-}
+
 
 .foot_container {
   display: flex;
@@ -1301,6 +1306,8 @@ footer {
 }
 
 .overlay {
+  background-attachment: fixed;
+  overflow: hidden;
   position: fixed;
   top: 0;
   left: 0;
