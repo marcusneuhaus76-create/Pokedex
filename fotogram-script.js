@@ -310,7 +310,7 @@ function getScaleClass() {
 }
 
 
-function getSearchInput() {
+/* function getSearchInput() {
      document.getElementById("btn").addEventListener("click", () => {
         const textInput = document.getElementById("searchInput").value;
         const result = filter(textInput.toLowerCase());
@@ -323,7 +323,24 @@ function getSearchInput() {
         });
         renderPokemonCard(pokemons)
       }
+ */
 
+function getSearchInput() {
+    const textInput = document.getElementById("searchInput").value.toLowerCase();
+
+    const result = filter(textInput);
+
+    console.log("Inhalt der Suchvariable:", result);
+
+    pokemons = pokemons.filter(function(pokemon) {
+        return pokemon.name.includes(result);
+    });
+
+    console.log("Gefilterte Pokemons:", pokemons);
+
+    renderPokemonCard(pokemons);
+}
+      
 
 function startsWithInput(str) {
   return str.startsWith(input);
