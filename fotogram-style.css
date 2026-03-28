@@ -8,6 +8,10 @@
   -ms-overflow-style: none;
 }
 
+.no-scroll {
+  overflow: hidden;
+}
+
 header {
   display: flex;
   flex-wrap: wrap;

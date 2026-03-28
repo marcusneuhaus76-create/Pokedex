@@ -166,6 +166,9 @@ async function init() {
 
 function showPhoto(i) {
   let contentRef = document.getElementById("pokemon-list");
+  document.body.classList.add("no-scroll");
+  document.documentElement.classList.add("no-scroll");
+
   if (!document.getElementById("bildOverlay")) {
     contentRef.innerHTML += `<div id="bildOverlay" class="overlay" onclick="toggleOverlay()"></div>`;
   }
@@ -217,53 +220,24 @@ function toggleStop() {
 }
 
 
-/* function toggleOverlay(img) {
+
+function toggleOverlay() {
   let overlay = document.getElementById("bildOverlay");
-  
-  if (overlay) {overlay.remove(); 
-    document.body.style.overflow = "";
-    document.body.style.backgroundAttachment = "";
-    document.documentElement.style.overflow = "";
-    document.documentElement.style.backgroundAttachment = "" ;
-    
-  } else {   
-  
-    document.body.style.overflow = "hidden";
-    document.body.style.backgroundAttachment = "fixed";
-    document.documentElement.style.overflow = "hidden";  
-    document.documentElement.style.backgroundAttachment = "fixed";}
 
-  let frame = document.getElementById("bspos");
-  if (frame) frame.remove();   
-
-  let card = img.closest(".pokemon-card");
-  card.classList.toggle("big"); 
-}*/
-
-function toggleOverlay(img) {
-  let overlay = document.getElementById("bildOverlay");
-  
   if (overlay) {
-    overlay.remove(); 
-    
-    document.body.style.overflow = "";
-    document.body.style.backgroundAttachment = "";
-    document.documentElement.style.overflow = "";
-    document.documentElement.style.backgroundAttachment = "";
-    
-  } else {   
-    document.body.style.overflow = "hidden";
-    document.body.style.backgroundAttachment = "fixed";
-    document.documentElement.style.overflow = "hidden";  
-    document.documentElement.style.backgroundAttachment = "fixed";
+    overlay.remove();
 
-  let frame = document.getElementById("bspos");
-  if (frame) frame.remove();   
+    let frame = document.getElementById("bspos");
+    if (frame) frame.remove();
 
-  let card = img.closest(".pokemon-card");
-  card.classList.toggle("big");
-} }
+    document.body.classList.remove("no-scroll");
+    document.documentElement.classList.remove("no-scroll");
 
+  } else {
+    document.body.classList.add("no-scroll");
+    document.documentElement.classList.add("no-scroll");
+  }
+}
 
 function roar(id) {  
   // fetch(`https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/${id}.ogg`)
@@ -309,21 +283,6 @@ function getScaleClass() {
   }
 }
 
-
-/* function getSearchInput() {
-     document.getElementById("btn").addEventListener("click", () => {
-        const textInput = document.getElementById("searchInput").value;
-        const result = filter(textInput.toLowerCase());
-        // pokemons = filteredPokemons;
-        console.log("Inhalt der Suchvariable:", result);
-        pokemons = pokemons.filter(function(pokemon) {
-        return pokemon.name.includes(result);
-        });
-        console.log("Gefilterte Pokemons:", pokemons);
-        });
-        renderPokemonCard(pokemons)
-      }
- */
 
 function getSearchInput() {
     const textInput = document.getElementById("searchInput").value.toLowerCase();
