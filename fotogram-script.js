@@ -217,6 +217,7 @@ function showPhotoOnArrow(i) {
 }
 
 function showPokemonDetails(i) {
+  document.querySelector(".datasheet").classList.add("pushed");
   console.log("showPokemonDetails Funktion mit i:", i);
   let container = document.getElementById("pokemondetails");
   container.innerHTML =  
