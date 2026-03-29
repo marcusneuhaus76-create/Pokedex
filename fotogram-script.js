@@ -177,9 +177,12 @@ function showPhoto(i) {
     <div id="bscpos" class="bigphoto" onclick="toggleStop()">                                                              
         <span class="picture_name">${first_uppercase(pokemons[i].name)}</span><b class="xclose" onclick="toggleOverlay()">X</b>              
         <img src="${getPokemonImage(i)}" class="bigphoto_size ${getScaleClass()}">       
-        ${getPokemonDetailsHTML(i)}        
+        ${getPokemonDetailsHTML(i)}     
+        <img src="./img/arrowleft.png" class="arrowposition_left" onclick="showPhotoOnArrow(${i - 1})">
+        <span id="picnumber" class="picture_number">${i + 1} / ${pokemons.length}</span>
+        <img src="./img/arrowright.png" class="arrowposition_right" onclick="showPhotoOnArrow(${i + 1})">   
     </div>
-  </div>`
+  </div>`; 
   setColorTypeBig(i);
   roar(i);
   event.stopPropagation();
@@ -189,16 +192,40 @@ function showPhoto(i) {
 function showPhotoOnArrow(i) {
   if (i > 9 +  more) i = 0;
   if (i < 0) i = 9 + more;
-  let contentRef = document.getElementById(`bscpos`);
-  contentRef.innerHTML = `<span class="picture_name">${first_uppercase(pokemons[i].name)}</span><b class="xclose" onclick="toggleOverlay()">X</b> 
-                            <img src="${getPokemonImage(i)}" class="bigphoto_size ${getScaleClass()}">
+  let contentRef = document.getElementById("bscpos");
+  contentRef.innerHTML = `<div id="tabcontainer" class="tabposition">
+
+                          <span id="pokemondata" class="datasheet" onclick="showPokemonDetails(${i})"><b>Daten</b>                          
+                          </span>
+
+                          <span id="evolution" class="evolution" onclick="showEvolutionChain(${pokemons[i].id})"><b>Evolution</b></span>
+                          </div>
+
+                          <div id="pokemondetails" class="details"></div>
+
+                          <span class="picture_name">${first_uppercase(pokemons[i].name)}</span><b class="xclose" onclick="toggleOverlay()">X</b> 
+                          <img src="${getPokemonImage(i)}" class="bigphoto_size ${getScaleClass()}">                        
+
+                            
                             <img src="./img/arrowleft.png" class="arrowposition_left" onclick="showPhotoOnArrow(${i - 1})">
                             <span id="picnumber" class="picture_number">${i + 1} / ${pokemons.length}</span>
-                            <img src="./img/arrowright.png" class="arrowposition_right" onclick="showPhotoOnArrow(${i + 1})"> 
-                            ${getPokemonDetailsHTML(i)}`
+                            <img src="./img/arrowright.png" class="arrowposition_right" onclick="showPhotoOnArrow(${i + 1})">`;
+                            // ${getPokemonDetailsHTML(i)}`
                             setColorTypeBig(i);
                             roar(i);
-                            event.stopPropagation();
+                            // event.stopPropagation();
+}
+
+function showPokemonDetails(i) {
+  console.log("showPokemonDetails Funktion mit i:", i);
+  let container = document.getElementById("pokemondetails");
+  container.innerHTML =  
+               `<span id="long" class="height">Height: ${pokemons[i].height / 10} m</span>   
+                <span id="mass" class="weight">Weight: ${pokemons[i].weight / 10} kg</span> 
+                <span id="attacker" class="attack">Attack: ${pokemons[i].stats[1].base_stat}</span>
+                <span id="defender" class="defense">Defense: ${pokemons[i].stats[2].base_stat}</span>       
+                <br><br>`;
+  // container.innerHTML = getPokemonDetailsHTML(i);
 }
 
 
@@ -208,12 +235,27 @@ function getPokemonDetailsHTML(i) {
     <span id="mass" class="weight">Weight: ${pokemons[i].weight / 10} kg</span> 
     <span id="attacker" class="attack">Attack: ${pokemons[i].stats[1].base_stat}</span>
     <span id="defender" class="defense">Defense: ${pokemons[i].stats[2].base_stat}</span>       
-    <img src="./img/arrowleft.png" class="arrowposition_left" onclick="showPhotoOnArrow(${i - 1})">
-    <span id="picnumber" class="picture_number">${i + 1} / ${pokemons.length}</span>
-    <img src="./img/arrowright.png" class="arrowposition_right" onclick="showPhotoOnArrow(${i + 1})">
     <br><br>`;
 }
 
+/*
+function getPokemonDetailsHTML(i) {
+  return `
+    <span id="long" class="height">Height: ${pokemons[i].height / 10} m</span>   
+    <span id="mass" class="weight">Weight: ${pokemons[i].weight / 10} kg</span> 
+    <span id="attacker" class="attack">Attack: ${pokemons[i].stats[1].base_stat}</span>
+    <span id="defender" class="defense">Defense: ${pokemons[i].stats[2].base_stat}</span>       
+    
+    
+    
+    <img src="./img/arrowleft.png" class="arrowposition_left" onclick="showPhotoOnArrow(${i - 1})">
+    <span id="picnumber" class="picture_number">${i + 1} / ${pokemons.length}</span>
+    <img src="./img/arrowright.png" class="arrowposition_right" onclick="showPhotoOnArrow(${i + 1})"> 
+    
+
+    <br><br>`;
+}
+ */
 
 function toggleStop() {
   event.stopPropagation();
@@ -315,6 +357,38 @@ function filter(textInput) {
 }
 
 
+async function getEvolutionChain(pokemonId) {
+  const pokemonRes = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonId}`);
+  const pokemon = await pokemonRes.json();
+
+  const speciesRes = await fetch(pokemon.species.url);
+  const species = await speciesRes.json();
+
+  const evolutionRes = await fetch(species.evolution_chain.url);
+  const evolution = await evolutionRes.json();
+
+  return evolution;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 /* 
@@ -405,6 +479,9 @@ function checkAdult(age) {
   event.stopPropagation();
 }
 
+
+
+
+onclick="${getPokemonDetailsHTML(i)}"
+
 */
-
-

@@ -131,6 +131,40 @@ header {
 }
 
 
+.datasheet {
+  z-index: 10;
+  position: relative;
+}
+
+/* .tabposition {
+  display: flex;
+  position: absolute;
+  justify-content: space-between;
+  align-items: center;
+  top:65%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+ */
+
+/* .datasheet {
+  display: flex;
+  position: absolute;
+  left: 0%;   
+} */
+
+.tabposition {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: whitesmoke;
+  font-size: 14pt;
+  position: absolute;
+  top: 65%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%; 
+}
 
 .foot_container {
   display: flex;
@@ -373,6 +407,15 @@ h1 {
   }
 }
 
+.details {
+  display: flex;
+  position: absolute;
+  top: 50px;
+  left: 0;
+  width: 80%;
+  /*height: 20%;  */
+}
+ 
 
 .height {
   font-size: 15px;
@@ -380,8 +423,10 @@ h1 {
   font-family: Figtree-Light;
   display: flex;
   position: absolute;
+  margin-left: 20px;
   left: 20px;
   top: 420px;  
+  z-index: 10;
 }
 
 .weight {
@@ -390,6 +435,7 @@ h1 {
   font-family: Figtree-Light;
   display: flex;
   position: absolute;
+  margin-left: 20px;
   left: 20px;
   top: 440px;  
 }
@@ -400,6 +446,7 @@ h1 {
   font-family: Figtree-Light;
   display: flex;
   position: absolute;
+  margin-left: 20px;
   left: 20px;
   top: 460px;  
 }
@@ -410,6 +457,7 @@ h1 {
   font-family: Figtree-Light;
   display: flex;
   position: absolute;
+  margin-left: 20px;
   left: 20px;
   top: 480px;  
 }
