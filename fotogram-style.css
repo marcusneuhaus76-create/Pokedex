@@ -131,13 +131,44 @@ header {
 }
 
 
-.datasheet {
+.evolution {
   z-index: 10;
+  border-radius: 10px;
+  padding: 5px;
   position: relative;
+  background-color: whitesmoke;
 }
 
+.datasheet {
+  z-index: 10;
+  border-radius: 10px;
+  padding: 5px;
+  position: relative;
+  background-color: whitesmoke;
+}
+
+.datasheet:hover {
+  transform: scale(1.05);
+  cursor: pointer;
+}
+
+.fightingsheet {
+  z-index: 10;
+  border-radius: 10px;
+  padding: 5px;
+  position: relative;
+  background-color: whitesmoke;
+}
+
+.fightingsheet:hover {
+  transform: scale(1.05);
+  cursor: pointer;
+}
+
+
+
 .pushed {
-  background-color: #5FA63A;
+  filter: brightness(0.5);
 }
 
 /* .tabposition {
@@ -161,7 +192,9 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  color: whitesmoke;
+  color: var(--pokemon-color);
+  /* color: whitesmoke; */
+  
   font-size: 14pt;
   position: absolute;
   top: 65%;

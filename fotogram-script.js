@@ -195,11 +195,15 @@ function showPhotoOnArrow(i) {
   let contentRef = document.getElementById("bscpos");
   contentRef.innerHTML = `<div id="tabcontainer" class="tabposition">
 
-                          <span id="pokemondata" class="datasheet" onclick="showPokemonDetails(${i})"><b>Daten</b>                          
+                          <span id="pokemondata" class="datasheet" onclick="showPokemonDetails(${i})"><b>Body</b>                          
                           </span>
 
-                          <span id="evolution" class="evolution" onclick="showEvolutionChain(${pokemons[i].id})"><b>Evolution</b></span>
+                          <span id="evolution" class="datasheet" onclick="showEvolutionChain(${pokemons[i].id})"><b>Evolution</b></span>
+
+                          <span id="fighting" class="fightingsheet" onclick="showFighting(${i})"><b>Fighting</b></span>
+
                           </div>
+
 
                           <div id="pokemondetails" class="details"></div>
 
@@ -218,16 +222,28 @@ function showPhotoOnArrow(i) {
 
 function showPokemonDetails(i) {
   document.querySelector(".datasheet").classList.add("pushed");
+  document.querySelector(".fightingsheet").classList.remove("pushed");
+  
   console.log("showPokemonDetails Funktion mit i:", i);
   let container = document.getElementById("pokemondetails");
   container.innerHTML =  
                `<span id="long" class="height">Height: ${pokemons[i].height / 10} m</span>   
                 <span id="mass" class="weight">Weight: ${pokemons[i].weight / 10} kg</span> 
-                <span id="attacker" class="attack">Attack: ${pokemons[i].stats[1].base_stat}</span>
-                <span id="defender" class="defense">Defense: ${pokemons[i].stats[2].base_stat}</span>       
                 <br><br>`;
   // container.innerHTML = getPokemonDetailsHTML(i);
 }
+
+function showFighting(i) {
+  document.querySelector(".fightingsheet").classList.add("pushed");
+  document.querySelector(".datasheet").classList.remove("pushed");
+  console.log("showFighting Funktion mit i:", i);
+  let container = document.getElementById("pokemondetails");
+  container.innerHTML =  
+               `<span id="attacker" class="height">Attack: ${pokemons[i].stats[1].base_stat}</span>
+                <span id="defender" class="weight">Defense: ${pokemons[i].stats[2].base_stat}</span>       
+                <br><br>`;
+}
+
 
 
 function getPokemonDetailsHTML(i) {
