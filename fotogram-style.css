@@ -152,6 +152,19 @@ header {
   cursor: pointer;
 }
 
+.evosheet {
+  z-index: 10;
+  border-radius: 10px;
+  padding: 5px;
+  position: relative;
+  background-color: whitesmoke;
+}
+
+.evosheet:hover {
+  transform: scale(1.05);
+  cursor: pointer;
+}
+
 .fightingsheet {
   z-index: 10;
   border-radius: 10px;
@@ -462,7 +475,7 @@ h1 {
   position: absolute;
   margin-left: 20px;
   left: 20px;
-  top: 420px;  
+  top: 440px;  
   z-index: 10;
 }
 
@@ -474,9 +487,35 @@ h1 {
   position: absolute;
   margin-left: 20px;
   left: 20px;
-  top: 440px;  
+  top: 460px;  
 }
 
+
+.speed {
+  font-size: 15px;
+  color: whitesmoke;
+  font-family: Figtree-Light;
+  display: flex;
+  position: absolute;
+  margin-left: 20px;
+  left: 20px;
+  top: 480px;  
+}
+
+
+.hitpoints {
+  font-size: 15px;
+  color: whitesmoke;
+  font-family: Figtree-Light;
+  display: flex;
+  position: absolute;
+  margin-left: 20px;
+  left: 20px;
+  top: 500px;  
+}
+
+
+/* 
 .attack {
   font-size: 15px;
   color: whitesmoke;
@@ -498,6 +537,29 @@ h1 {
   left: 20px;
   top: 480px;  
 }
+ */
+.special-attack {
+  font-size: 15px;
+  color: whitesmoke;
+  font-family: Figtree-Light;
+  display: flex;
+  position: absolute;
+  margin-left: 20px;
+  left: 20px;
+  top: 480px;  
+}
+
+.special-defense {
+  font-size: 15px;
+  color: whitesmoke;
+  font-family: Figtree-Light;
+  display: flex;
+  position: absolute;
+  margin-left: 20px;
+  left: 20px;
+  top: 500px;  
+}
+
 
 .moves {
   font-size: 15px;

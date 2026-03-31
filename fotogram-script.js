@@ -31,6 +31,8 @@ let more = 0;
 
 let imageMode = "normal";
 
+let pushedButton = null;
+
 
 async function fillNameDictionary() {
   // Leere das Array, um die neuen Daten zu speichern
@@ -194,54 +196,69 @@ function showPhotoOnArrow(i) {
   if (i < 0) i = 9 + more;
   let contentRef = document.getElementById("bscpos");
   contentRef.innerHTML = `<div id="tabcontainer" class="tabposition">
-
                           <span id="pokemondata" class="datasheet" onclick="showPokemonDetails(${i})"><b>Body</b>                          
                           </span>
-
-                          <span id="evolution" class="datasheet" onclick="showEvolutionChain(${pokemons[i].id})"><b>Evolution</b></span>
-
+                          <span id="evolution" class="evosheet" onclick="showEvolutionChain(${pokemons[i].id})"><b>Evolution</b></span>
                           <span id="fighting" class="fightingsheet" onclick="showFighting(${i})"><b>Fighting</b></span>
-
                           </div>
-
-
                           <div id="pokemondetails" class="details"></div>
-
                           <span class="picture_name">${first_uppercase(pokemons[i].name)}</span><b class="xclose" onclick="toggleOverlay()">X</b> 
-                          <img src="${getPokemonImage(i)}" class="bigphoto_size ${getScaleClass()}">                        
-
-                            
-                            <img src="./img/arrowleft.png" class="arrowposition_left" onclick="showPhotoOnArrow(${i - 1})">
-                            <span id="picnumber" class="picture_number">${i + 1} / ${pokemons.length}</span>
-                            <img src="./img/arrowright.png" class="arrowposition_right" onclick="showPhotoOnArrow(${i + 1})">`;
-                            // ${getPokemonDetailsHTML(i)}`
-                            setColorTypeBig(i);
-                            roar(i);
-                            // event.stopPropagation();
+                          <img src="${getPokemonImage(i)}" class="bigphoto_size ${getScaleClass()}">                                                   
+                          <img src="./img/arrowleft.png" class="arrowposition_left" onclick="showPhotoOnArrow(${i - 1})">
+                          <span id="picnumber" class="picture_number">${i + 1} / ${pokemons.length}</span>
+                          <img src="./img/arrowright.png" class="arrowposition_right" onclick="showPhotoOnArrow(${i + 1})">`;
+                          checkPushed(pushedButton, i)
+                          // ${getPokemonDetailsHTML(i)}`
+                          setColorTypeBig(i);
+                          roar(i);
+                          // event.stopPropagation();
 }
 
 function showPokemonDetails(i) {
   document.querySelector(".datasheet").classList.add("pushed");
-  document.querySelector(".fightingsheet").classList.remove("pushed");
-  
+  document.querySelector(".evosheet").classList.remove("pushed");  
+  document.querySelector(".fightingsheet").classList.remove("pushed");  
+  pushedButton = 1;
   console.log("showPokemonDetails Funktion mit i:", i);
   let container = document.getElementById("pokemondetails");
   container.innerHTML =  
                `<span id="long" class="height">Height: ${pokemons[i].height / 10} m</span>   
                 <span id="mass" class="weight">Weight: ${pokemons[i].weight / 10} kg</span> 
+                <span id="speedy" class="speed">Speed: ${pokemons[i].stats[5].base_stat}</span>
+                <span id="hitpoint" class="hitpoints">Hit Points: ${pokemons[i].stats[0].base_stat}</span>          
                 <br><br>`;
   // container.innerHTML = getPokemonDetailsHTML(i);
+  return pushedButton;
 }
+
+function checkPushed(pushedButton, i) {
+  if (pushedButton === 1) {
+  console.log("datasheet hat die Klasse 'pushed'");
+    showPokemonDetails(i);
+  }
+  else 
+    // if (pushedButton === 2) 
+      {
+    showFighting(i);
+  }
+}
+
+
 
 function showFighting(i) {
   document.querySelector(".fightingsheet").classList.add("pushed");
   document.querySelector(".datasheet").classList.remove("pushed");
+  document.querySelector(".evosheet").classList.remove("pushed");  
+  pushedButton = 3;
   console.log("showFighting Funktion mit i:", i);
   let container = document.getElementById("pokemondetails");
   container.innerHTML =  
                `<span id="attacker" class="height">Attack: ${pokemons[i].stats[1].base_stat}</span>
-                <span id="defender" class="weight">Defense: ${pokemons[i].stats[2].base_stat}</span>       
+                <span id="defender" class="weight">Defense: ${pokemons[i].stats[2].base_stat}</span>
+                <span id="specialattacker" class="special-attack">Special-Attack: ${pokemons[i].stats[3].base_stat}</span>      
+                <span id="specialdefender" class="special-defense">Special-Defense: ${pokemons[i].stats[4].base_stat}</span>          
                 <br><br>`;
+return pushedButton;
 }
 
 
@@ -250,29 +267,9 @@ function getPokemonDetailsHTML(i) {
   return `
     <span id="long" class="height">Height: ${pokemons[i].height / 10} m</span>   
     <span id="mass" class="weight">Weight: ${pokemons[i].weight / 10} kg</span> 
-    <span id="attacker" class="attack">Attack: ${pokemons[i].stats[1].base_stat}</span>
-    <span id="defender" class="defense">Defense: ${pokemons[i].stats[2].base_stat}</span>       
     <br><br>`;
 }
 
-/*
-function getPokemonDetailsHTML(i) {
-  return `
-    <span id="long" class="height">Height: ${pokemons[i].height / 10} m</span>   
-    <span id="mass" class="weight">Weight: ${pokemons[i].weight / 10} kg</span> 
-    <span id="attacker" class="attack">Attack: ${pokemons[i].stats[1].base_stat}</span>
-    <span id="defender" class="defense">Defense: ${pokemons[i].stats[2].base_stat}</span>       
-    
-    
-    
-    <img src="./img/arrowleft.png" class="arrowposition_left" onclick="showPhotoOnArrow(${i - 1})">
-    <span id="picnumber" class="picture_number">${i + 1} / ${pokemons.length}</span>
-    <img src="./img/arrowright.png" class="arrowposition_right" onclick="showPhotoOnArrow(${i + 1})"> 
-    
-
-    <br><br>`;
-}
- */
 
 function toggleStop() {
   event.stopPropagation();
