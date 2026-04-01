@@ -165,6 +165,19 @@ header {
   cursor: pointer;
 }
 
+.evolution-chain {
+  font-size: 15px;
+  color: whitesmoke;
+  font-family: Figtree-Light;
+  display: flex;
+  position: absolute;
+  margin-left: 20px;
+  left: 20px;
+  top: 440px;  
+  z-index: 10;
+}
+
+
 .fightingsheet {
   z-index: 10;
   border-radius: 10px;
@@ -206,8 +219,7 @@ header {
   justify-content: space-between;
   align-items: center;
   color: var(--pokemon-color);
-  /* color: whitesmoke; */
-  
+  /* color: whitesmoke; */  
   font-size: 14pt;
   position: absolute;
   top: 65%;
@@ -478,6 +490,7 @@ h1 {
   top: 440px;  
   z-index: 10;
 }
+
 
 .weight {
   font-size: 15px;
@@ -989,6 +1002,10 @@ h1 {
 
 .bigphoto_shiny {
   transform: scale(0.6);
+}
+
+.bigphoto_back_shiny {
+  transform: scale(3);
 }
 
 .bigphoto_size {
