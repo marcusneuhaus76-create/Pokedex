@@ -40,7 +40,6 @@ const icons = {
 	fairy: './icons/fairy.svg',
 };
 
-// const nameDictionary = {};
 
 const nameDictionary = [];
 
@@ -57,7 +56,6 @@ let pushedButton = null;
 
 async function fillNameDictionary() {
   // Leere das Array, um die neuen Daten zu speichern
-
   // for (let id = 1 + more; id <= 10 + more; id++) {
   for (let id = 1; id <= 10 + more; id++) {  
     try {
@@ -71,6 +69,7 @@ async function fillNameDictionary() {
   console.log(nameDictionary);
   // console.log(pokemons); Zugriff auf den Namen des Pokémon
 }
+
 
 async function showLoadingSpinner() { 
   let contentRef = document.getElementById("pokemon-list");
@@ -106,9 +105,7 @@ function showButtons() {
 
 
 async function showGallery() {
-  // await showLoadingSpinner();  
   pokemons.length = 0;
-  // for (let id = 1 + more; id <= 10 + more; id++) {
   for (let id = 1; id <= 10 + more; id++) {
     const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}/`);
     const data = await response.json();
@@ -118,31 +115,43 @@ async function showGallery() {
   renderPokemonCard(pokemons);  
 }
 
-  
-
- // <img src="${pokemons[i].sprites.front_default}" class="smallphoto"><span>
- // <img src="${pokemons[i].sprites.other.home.front_shiny}" class="smallphoto"><span>
 
 function renderPokemonCard(pokemons) {
     console.log("Länge des Pokemons-Arrays:", pokemons.length);
     let contentRef = document.getElementById("pokemon-list");
-  contentRef.innerHTML = "";
+    contentRef.innerHTML = "";
   for (let i = 0; i < pokemons.length; i++) {
+    console.log(`Pokémon ${i} (${pokemons[i].name}) Typen:`, 
+            pokemons[i].types.map(type => type.type.name));
     contentRef.innerHTML += `
       <div class="pokemon-card" id="card-${i}" onclick="showPhoto(${i})">
-        <span class="picture_name_card"><b>${first_uppercase(pokemons[i].name)}</b>
-        <img src="${getPokemonImage(i)}" class="smallphoto"><span>
-        <span>Type: ${pokemons[i].types.map(type => first_uppercase(type.type.name)).join(", ")}</span></span>
-      </div>`;    
-      setColorType(i);
+          <span class="picture_name_card"><b>${first_uppercase(pokemons[i].name)}</b><img src="${getPokemonImage(i)}" class="smallphoto"></span>
+          <span class="type">Type: ${pokemons[i].types.map(type => first_uppercase(type.type.name)).join(", ")}</span>
+          <span class="pokemon-type-icon"> ${pokemons[i].types.map(type => `<img src="${icons[type.type.name]}" class="type-icon" title="${first_uppercase(type.type.name)}">`).join("")}</span>
+          ${checkTypeArray(pokemons, i)}
+          </div>`;   
+      setColorType(i);                   
       }      
     }  
+
+
+
+    function checkTypeArray(pokemons, i) {
+      if (pokemons[i].types.length === 1) {
+        const typename = pokemons[i].types[0].type.name; 
+        return `<span><img src="${icons[typename]}" class="type-icon" title="${first_uppercase(typename)}"></span>`;
+      } 
+      return"";
+    }
+
+ 
 
 function setColorType(i) {
   const type = pokemons[i].types[0].type.name; 
   const card = document.getElementById(`card-${i}`);
   card.style.setProperty("--pokemon-color", colours[type]);
 }
+
 
 
 function setColorTypeBig(i) {
@@ -160,7 +169,6 @@ function first_uppercase(name) {
 
 function loadMore() {
   more += 10;
-  // showGallery();
   showLoadingSpinner();
   return more;
 }
@@ -191,7 +199,6 @@ function showPhoto(i) {
   let contentRef = document.getElementById("pokemon-list");
   document.body.classList.add("no-scroll");
   document.documentElement.classList.add("no-scroll");
-
   if (!document.getElementById("bildOverlay")) {
     contentRef.innerHTML += `<div id="bildOverlay" class="overlay" onclick="toggleOverlay()"></div>`;
   }
@@ -239,6 +246,7 @@ function showPhotoOnArrow(i) {
                           // event.stopPropagation();
 }
 
+
 function showPokemonDetails(i) {
   document.querySelector(".datasheet").classList.add("pushed");
   // document.querySelector(".evosheet").classList.remove("pushed");  
@@ -257,7 +265,6 @@ function showPokemonDetails(i) {
 }
 
 
-
 function showBackImage(i) {
   document.querySelector(".datasheet").classList.remove("pushed");
   // document.querySelector(".evosheet").classList.add("pushed");  
@@ -266,9 +273,6 @@ function showBackImage(i) {
   let container = document.getElementById("bigphoto-container");
   container.innerHTML = "";
   container.innerHTML = `<img src="${getPokemonBackImage(i)}" class="bigphoto_size ${getScaleBackClass()}"></img>`;
-  /* container.innerHTML = 
-                    `<img src="${getPokemonBackImage(i)}" id="evochain" class="evolution-chain">
-                    `; */
   let nextContainer = document.getElementById("tabcontainer");
   nextContainer.innerHTML = `<span id="pokemondata" class="datasheet" onclick="showPokemonDetails(${i})"><b>Body</b>                          
                               </span>
@@ -299,7 +303,6 @@ function showFrontImage(i) {
     }
 
 
-
 function showFighting(i) {
   document.querySelector(".fightingsheet").classList.add("pushed");
   document.querySelector(".datasheet").classList.remove("pushed");
@@ -317,7 +320,6 @@ return pushedButton;
 }
 
 
-
 function getPokemonDetailsHTML(i) {
   return `
     <span id="long" class="height">Height: ${pokemons[i].height / 10} m</span>   
@@ -332,7 +334,6 @@ function checkPushed(pushedButton, i) {
     showPokemonDetails(i);
   }
   else 
-    // if (pushedButton === 2) 
       {
     showFighting(i);
   }
@@ -346,24 +347,20 @@ function toggleStop() {
 
 function toggleOverlay() {
   let overlay = document.getElementById("bildOverlay");
-
   if (overlay) {
     overlay.remove();
-
     let frame = document.getElementById("bspos");
     if (frame) frame.remove();
-
     document.body.classList.remove("no-scroll");
     document.documentElement.classList.remove("no-scroll");
-
   } else {
     document.body.classList.add("no-scroll");
     document.documentElement.classList.add("no-scroll");
   }
 }
 
+
 function roar(id) {  
-  // fetch(`https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/${id}.ogg`)
   fetch(`https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/${id}.ogg`)
     .then(response => response.blob()) // Das Ergebnis von response ist die heuntergeladene Datei, aber noch nicht als abspielbares Audio. Mit "response.blob()" wird die geladene Datei in ein Blob umgewandelt.
     .then(blob => { // Blob = Binary Large Object ist ein Object, das Audio, Video oder ein Bild enthält.
@@ -397,13 +394,11 @@ function getPokemonImage(i) {
   }
 }
 
+
 function getPokemonBackImage(i) {
   if (imageMode === "shiny") {
     return pokemons[i].sprites.back_shiny;    
   } else {  
-    
-    "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/493-bug.png",
-
     return pokemons[i].sprites.back_default;
   }
 }
@@ -417,6 +412,7 @@ function getScaleClass() {
   }
 }
 
+
 function getScaleBackClass() {
   if (imageMode === "shiny") {
   return "bigphoto_back_shiny";
@@ -424,7 +420,6 @@ function getScaleBackClass() {
     return "bigphoto_normal";
   }
 }
-
 
 
 function getSearchInput() {
@@ -442,8 +437,6 @@ function getSearchInput() {
 function startsWithInput(str) {
   return str.startsWith(input);
 }
-
-// const result = arr.filter(startsWithInput);
 
 
 function filter(textInput) {

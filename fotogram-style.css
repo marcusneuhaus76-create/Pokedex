@@ -29,7 +29,6 @@ header {
 }
 
 
-
 .logo-group {
   display: flex;  
   position: relative;        /* hält Bild + Text zusammen */
@@ -72,6 +71,20 @@ header {
   border-radius: 5px;
 }
 
+.type-icon {
+  width: 5px;
+  height: 5px;
+}
+
+
+.pokemon-type-icon {
+  display: flex;
+  position: absolute;
+  bottom: 10px;
+  left: 45%;
+  gap: 5px; 
+  transform: scale(3);
+}
 
 .buttonposition {
   display: flex;
@@ -106,6 +119,17 @@ header {
   background-color: var(--pokemon-color);
   height: 250px;
   width: 200px;
+}
+
+.type {
+  font-size: 14px;
+  color: whitesmoke;
+  font-family: Figtree-Light;
+  display: flex;
+  position: absolute;
+  margin-left: 20px;
+  left: 20px;
+  bottom: 30px;
 }
 
 .pokemon-card:hover {
