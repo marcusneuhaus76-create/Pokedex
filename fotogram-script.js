@@ -66,8 +66,6 @@ async function fillNameDictionary() {
       console.error("Fehler:", error);
     }
   }
-  console.log(nameDictionary);
-  // console.log(pokemons); Zugriff auf den Namen des Pokémon
 }
 
 
@@ -127,7 +125,7 @@ function renderPokemonCard(pokemons) {
       <div class="pokemon-card" id="card-${i}" onclick="showPhoto(${i})">
           <span class="picture_name_card"><b>${first_uppercase(pokemons[i].name)}</b><img src="${getPokemonImage(i)}" class="smallphoto"></span>
           <span class="type">Type: ${pokemons[i].types.map(type => first_uppercase(type.type.name)).join(", ")}</span>
-          <span class="pokemon-type-icon"> ${pokemons[i].types.map(type => `<img src="${icons[type.type.name]}" class="type-icon" title="${first_uppercase(type.type.name)}">`).join("")}</span>
+          ${renderIcons(pokemons[i].types)}
           ${checkTypeArray(pokemons, i)}
           </div>`;   
       setColorType(i);                   
@@ -135,16 +133,26 @@ function renderPokemonCard(pokemons) {
     }  
 
 
+function renderIcons(types) {
+  let result = `<span class="pokemon-type-icon">`;
 
-    function checkTypeArray(pokemons, i) {
-      if (pokemons[i].types.length === 1) {
+  types.forEach(function(type) {
+    result += `<img src="${icons[type.type.name]}" class="type-icon" title="${first_uppercase(type.type.name)}">`;
+  });
+
+  result += `</span>`;
+  return result;
+}
+
+
+
+ function checkTypeArray(pokemons, i) {
         const typename = pokemons[i].types[0].type.name; 
-        return `<span><img src="${icons[typename]}" class="type-icon" title="${first_uppercase(typename)}"></span>`;
-      } 
-      return"";
+        return `<span ><img src="${icons[typename]}" class="type-icon" title="${first_uppercase(typename)}"></span>`;
+     
     }
 
- 
+
 
 function setColorType(i) {
   const type = pokemons[i].types[0].type.name; 
