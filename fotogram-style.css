@@ -80,10 +80,10 @@ header {
 .pokemon-type-icon {
   display: flex;
   position: absolute;
-  bottom: 10px;
+  bottom: 18px;
   left: 45%;
   gap: 5px; 
-  transform: scale(3);
+  transform: scale(5);
 }
 
 .buttonposition {
@@ -110,26 +110,26 @@ header {
 
 .pokemon-card {
   display: flex;
+  border-radius: 5px;
   position: relative;
   justify-content: center;
-  /* align-items: center; */
   margin: 10px;
   margin-top: 2px;
-  /* background-color: aliceblue; */
   background-color: var(--pokemon-color);
   height: 250px;
   width: 200px;
 }
 
 .type {
-  font-size: 14px;
+  font-size: 20px;
   color: whitesmoke;
   font-family: Figtree-Light;
+  justify-content: center;
   display: flex;
   position: absolute;
-  margin-left: 20px;
-  left: 20px;
-  bottom: 30px;
+  /* margin-left: 20px;
+  left: 20px; */
+  bottom: 42px;
 }
 
 .pokemon-card:hover {
