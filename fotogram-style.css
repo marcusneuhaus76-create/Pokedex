@@ -8,6 +8,12 @@
   -ms-overflow-style: none;
 }
 
+@media (max-height: 650px) {
+  body {
+    background-color: red !important;
+  }
+}
+
 .no-scroll {
   overflow: hidden;
 }
@@ -247,9 +253,16 @@ header {
   font-size: 14pt;
   position: absolute;
   top: 65%;
-  left: 50%;
-  transform: translateX(-50%);
+  /* left: 50%;
+  transform: translateX(-50%); */
   width: 80%; 
+}
+
+@media (max-height: 718px) {
+  .tabposition {
+   font-size: 14pt;
+   top: 60%;
+  }
 }
 
 .foot_container {
@@ -494,12 +507,14 @@ h1 {
 }
 
 .details {
-  display: flex;
-  position: absolute;
-  top: 50px;
-  left: 0;
-  width: 80%;
-  /*height: 20%;  */
+  display: flex; 
+  position: relative; 
+  bottom: 100px;
+  right: 19%;
+  bottom: -30%;
+  width: 100%;
+  flex-direction: column;
+  color: whitesmoke;
 }
  
 
@@ -852,8 +867,8 @@ h1 {
   top: 0;
   left: 0;
   width: 360px;
-  height: 70vh;
-  max-height: 800px; /*neu */
+  height: 80vh;
+  max-height: 800px; 
   display: flex;
   justify-content: center;
   align-items: center;
@@ -861,42 +876,40 @@ h1 {
   border-radius: 15px;  
 }
 
-@media (max-height: 720px) {
+/* @media (max-height: 720px) {
   .bigphoto {
     position: relative;
     top: 0;
     left: 0;
     width: 350px;
     height: 65vh;
-    max-height: 700px; /*neu */
+    max-height: 700px; 
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: #0b313f;
-    border-radius: 15px;
-    
+    border-radius: 15px;    
     padding-bottom: 10px;
   }
 }
-
-@media (max-height: 640px) {
+ */
+/* @media (max-height: 640px) {
   .bigphoto {
     position: relative;
     top: 0;
     left: 0;
     width: 360px;
     height: 63vh;
-    max-height: 670px; /*neu */
+    max-height: 670px; 
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: #0b313f;
-    border-radius: 15px;
-    
+    border-radius: 15px;    
     padding-bottom: 10px;
   }
-}
-
+} */
+/* 
 @media (max-height: 580px) {
   .bigphoto {
     position: relative;
@@ -912,7 +925,7 @@ h1 {
     
     padding-bottom: 10px;
   }
-}
+} */
 
 @media (max-height: 450px) {
   .bigphoto {
@@ -1015,42 +1028,74 @@ h1 {
     align-items: center;
     background-color: #0b313f;
     border-radius: 15px;
-    
   }
 }
 
 
 .bigphoto_normal {
   transform: scale(3.2);
-}
+  display: flex;
+  position: relative;
+  left: 120%;
+} 
+
+@media (max-height: 737px) {
+  .bigphoto_normal {
+    transform: scale(2.5);
+    display: flex;
+    position: relative;
+    left: 120%;
+    }
+} 
+
+@media (max-height: 718px) {
+  .bigphoto_normal {
+    transform: scale(2);    
+    }
+} 
+
+@media (max-height: 650px) {
+  .bigphoto_normal {
+    transform: scale(2.0);
+    display: flex;
+    position: relative;
+    left: 120%;
+    }
+} 
 
 .bigphoto_shiny {
   transform: scale(0.6);
+  display: flex;
+  position: relative;
+  left: 5%;
+  
 }
 
 .bigphoto_back_shiny {
   transform: scale(3);
 }
 
+
 .bigphoto_size {
   max-width: 500px;
   max-height: 500px;
-  /* transform: scale(3); */
   height: auto;
   border: 5px solid white;
   margin-bottom: 180px;
 }
 
-.bigphoto_size_shiny {
-  max-width: 500px;
-  max-height: 500px;
-  /* transform: scale(0.5); */
-  height: auto;
-  border: 5px solid white;
-  margin-bottom: 180px;
-}
- 
 
+/* @media (max-height: 650px) {
+  .bigphoto_size {
+    max-width: 400px;
+    max-height: 400px;
+    height: auto;
+    border: 5px solid white;
+    margin-bottom: 180px;
+  }
+} */
+
+/* 
 @media (max-width: 380px) {
   .bigphoto_size {
     max-width: 230px;
@@ -1069,8 +1114,8 @@ h1 {
     border: 5px solid white;
     margin-bottom: 25px;
   }
-}
-
+} */
+/* 
 @media (max-height: 530px) {
   .bigphoto_size {
     max-width: 210px;
@@ -1080,8 +1125,8 @@ h1 {
     margin-top: 30px;
     margin-bottom: 30px;
   }
-}
-
+} */
+/* 
 @media (min-height: 480px) and (max-height: 520px) {
   .bigphoto_size {
     max-width: 200px;
@@ -1091,8 +1136,8 @@ h1 {
     margin-top: 30px;
     margin-bottom: 30px;
   }
-}
-
+} */
+/* 
 @media (max-height: 480px) {
   .bigphoto_size {
     max-width: 195px;
@@ -1102,7 +1147,7 @@ h1 {
     margin-top: 30px;
     margin-bottom: 30px;
   }
-}
+} */
 
 @media (min-height: 396px) and (max-height: 420px) {
   .bigphoto_size {
@@ -1125,6 +1170,17 @@ h1 {
     margin-bottom: 40px;
   }
 }
+
+
+.bigphoto_size_shiny {
+  max-width: 500px;
+  max-height: 500px;
+  /* transform: scale(0.5); */
+  height: auto;
+  border: 5px solid white;
+  margin-bottom: 180px;
+}
+ 
 
 footer {
   position: fixed;
