@@ -11,6 +11,13 @@
   }
 }
 
+@media (max-width: 1000px) {
+  body {
+    background-color: rgb(204, 255, 0) !important;
+  }
+}
+
+
 .no-scroll {
   overflow: hidden;
 }
@@ -117,6 +124,12 @@ header {
   width: 200px;
 }
 
+.pokemon-card:hover {
+  transform: scale(1.08);
+  cursor: pointer;
+}
+
+
 .type {
   font-size: 20px;
   color: whitesmoke;
@@ -125,11 +138,6 @@ header {
   display: flex;
   position: absolute;
   bottom: 42px;
-}
-
-.pokemon-card:hover {
-  transform: scale(1.08);
-  cursor: pointer;
 }
 
 
@@ -190,7 +198,7 @@ header {
 }
 
 
-.evolution-chain {
+/* .evolution-chain {
   font-size: 15px;
   color: whitesmoke;
   font-family: Figtree-Light;
@@ -201,7 +209,7 @@ header {
   top: 440px;  
   z-index: 10;
 }
-
+ */
 
 .fightingsheet {
   z-index: 10;
@@ -570,7 +578,6 @@ h1 {
 }
 
 
- */
 .special-attack {
   font-size: 15px;
   color: whitesmoke;
@@ -828,8 +835,8 @@ h1 {
   top: 0;
   left: 0;
   width: 360px;
-  height: 80vh;
-  max-height: 800px; 
+  height: 80dvh; 
+  max-height: 800px;  
   display: flex;
   justify-content: center;
   align-items: center;
@@ -837,11 +844,24 @@ h1 {
   border-radius: 15px;  
 }
 
+/* .bigphoto {
+  width: min(90vw, 400px);
+  max-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--pokemon-color);
+  border-radius: 15px;
+  position: relative;
+}
+ */
+
  @media (max-height: 515px) {
   .bigphoto {
     width: 340px;
   }
  }
+
 
 
 /* @media (max-width: 380px) {
@@ -882,6 +902,11 @@ h1 {
   display: flex;
   position: relative;
   left: 120%;
+  max-width: 500px;
+  max-height: 500px;
+  height: auto;
+  border: 5px solid white;
+  margin-bottom: 180px;
 } 
 
 @media (max-height: 737px) {
@@ -910,10 +935,18 @@ h1 {
 
 @media (max-height: 450px) {
   .bigphoto_normal {
-    transform: scale(1);
+  display: flex;
+  position: relative;
+  left: 120%;
+  max-width: 500px;
+  max-height: 500px;
+  height: auto;
+  border: 5px solid white;
+  margin-bottom: 180px;
+  transform: scale(1);
     }
 } 
- 
+
 
 .bigphoto_shiny {
   transform: scale(0.6);
@@ -922,25 +955,33 @@ h1 {
   left: 5%;
 }
 
+
 .bigphoto_back_shiny {
   transform: scale(3);
 }
 
 
-.bigphoto_size {
-  max-width: 500px;
-  max-height: 500px;
-  height: auto;
-  border: 5px solid white;
-  margin-bottom: 180px;
-}
-
 @media (max-height: 380px) {
+  .bigphoto_shiny {
+    display: none !important;
+    }
+} 
+/* 
+@media (max-height: 380px) and (max-width: 978px) {
+  .bigphoto_shiny {
+    display: none !important;
+    transform: scale(0);
+    max-width: 0;
+    max-height: 0;
+    }
+}  */
+
+/* @media (max-height: 380px) {
 .bigphoto_size {
   display: none;  
   }
 }
-
+ */
 
 .bigphoto_size_shiny {
   max-width: 500px;
@@ -952,15 +993,21 @@ h1 {
 }
  
 
+@media (max-height: 380px) {
+  .bigphoto_size_shiny {
+    display: none !important;
+    }
+} 
+
 .dnone {
   display: none;
 }
 
-@media (max-height: 380px) {
+/* @media (max-height: 380px) {
   .bigphoto_container {
-    display: none;
+    display: none!important;
   }
- }
+ } */
 
 footer {
   position: fixed;
@@ -1306,7 +1353,7 @@ footer {
     display: none;
   }
 }
-
+/* 
 
 @media (max-height: 500px) and (min-height: 0px) and (max-width: 390px) and (min-width: 0px) {
   .picture_number {
@@ -1318,7 +1365,7 @@ footer {
   .picture_number {
     display: none;
   }
-}
+} */
 
 .overlay {
   background-attachment: fixed;
@@ -1338,3 +1385,18 @@ footer {
 .d_none {
   display: none;
 }
+
+@media (max-height: 380px) {
+  .bigphoto_normal {
+    display: none !important;
+    transform: scale(0);
+    position: relative;
+    left: 120%;
+    max-width: 500px;
+    max-height: 500px;
+    height: auto;
+    border: 5px solid white;
+    margin-bottom: 180px;
+    transform: scale(0);
+    }
+} 
