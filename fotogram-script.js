@@ -209,7 +209,7 @@ function showPhoto(i) {
                               <div id="bscpos" class="bigphoto" onclick="toggleStop()">  
                                 <span class="picture_name">${first_uppercase(pokemons[i].name)}</span>
                                 <b class="xclose" onclick="toggleOverlay()">X</b> 
-                                <div id="bigphoto-container">
+                                <div id="bigphoto-container" class="bigphoto_container">
                                     <img src="${getPokemonImage(i)}" class="bigphoto_size ${getScaleClass()}">   
                                 </div>   
                                 <div id="tabcontainer" class="tabposition">
@@ -236,7 +236,7 @@ function showPhotoOnArrow(i) {
   contentRef.innerHTML = `
                           <span class="picture_name">${first_uppercase(pokemons[i].name)}</span>
                           <b class="xclose" onclick="toggleOverlay()">X</b> 
-                          <div id="bigphoto-container">
+                          <div id="bigphoto-container" class="bigphoto_container">
                             <img src="${getPokemonImage(i)}" class="bigphoto_size ${getScaleClass()}">   
                           </div>     
                           <div id="tabcontainer" class="tabposition">
@@ -459,73 +459,3 @@ function filter(textInput) {
     return str.startsWith(textInput);
   });
 }
-
-/* 
-async function getEvolutionChain(pokemonId) {
-  const pokemonRes = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonId}`);
-  const pokemon = await pokemonRes.json();
-  const speciesRes = await fetch(pokemon.species.url);
-  const species = await speciesRes.json();
-  const evolutionRes = await fetch(species.evolution_chain.url);
-  const evolution = await evolutionRes.json();
-  return evolution;
-}
-
- */
-
-/* 
-
-async function getEvolutionChain(pokemonName) {
-  // 1. Pokemon
-  const pokemonRes = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`);
-  const pokemonData = await pokemonRes.json();
-
-  // 2. Species
-  const speciesRes = await fetch(pokemonData.species.url);
-  const speciesData = await speciesRes.json();
-
-  // 3. Evolution Chain
-  const evoRes = await fetch(speciesData.evolution_chain.url);
-  const evoData = await evoRes.json();
-
-  return evoData.chain;
-}
-
-
-
-
-/* function showPhoto(i) {
-  let contentRef = document.getElementById("pokemon-list");
-  document.body.classList.add("no-scroll");
-  document.documentElement.classList.add("no-scroll");
-  if (!document.getElementById("bildOverlay")) {
-    contentRef.innerHTML += `<div id="bildOverlay" class="overlay" onclick="toggleOverlay()"></div>`;
-  }
-  contentRef.innerHTML += ` 
-  <div id="bspos" class="basicposition" onclick="toggleOverlay(this)">
-    <div id="bscpos" class="bigphoto" onclick="toggleStop()">                                                              
-        <span class="picture_name">${first_uppercase(pokemons[i].name)}</span><b class="xclose" onclick="toggleOverlay()">X</b>              
-        <div id="bigphoto-container">
-          <img src="${getPokemonImage(i)}" class="bigphoto_size ${getScaleClass()}">       
-        </div>
-        ${getPokemonDetailsHTML(i)}     
-        <img src="./img/arrowleft.png" class="arrowposition_left" onclick="showPhotoOnArrow(${i - 1})">
-        <span id="picnumber" class="picture_number">${i + 1} / ${pokemons.length}</span>
-        <img src="./img/arrowright.png" class="arrowposition_right" onclick="showPhotoOnArrow(${i + 1})">   
-    </div>
-  </div>`; 
-  setColorTypeBig(i);
-  roar(i);
-  event.stopPropagation();
-}
- */
-
-
-
-
-
-
-
-
-
-
