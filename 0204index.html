@@ -1,0 +1,47 @@
+<html lang="de">
+  <head>
+    <meta charset="UTF-8"/>
+    <meta content="width=device-width, initial-scale=1.0" />
+    <title>Pokedex</title>
+    <link rel="stylesheet" href="0204fotogram-style.css" />
+    <link rel="icon" href="./img/alanyadk-pokemon-1536849_640.png" />
+  </head>
+
+  <!-- <body onload="showGallery()"> -->
+    <body onload="showLoadingSpinner()"></body>
+    <header id="header">
+
+    <div class="logo-group">
+      <!-- <p class="logo-pos"> -- foot_container -->
+        <img src="./img/alanyadk-pokemon-1536849_640.png" class="logo-size"/>
+        <h1 class="sitename"> &nbsp;Pokedex</h1>
+      <!-- </p> -->
+    </div> 
+     
+
+        <form class="search_container">
+          <input id="searchInput" type="search" placeholder="Suchen …">
+          <button id="btn"type="button" onclick="getSearchInput()">🔍</button>
+        </form>
+  
+    </header>
+
+    <div id="mainpart"></div>
+    <div id="loading" class="buttonposition"></div>
+    <div id="pokemon-list" class="gallery"></div>
+    
+    <!-- <h1 id="name"></h1> -->   
+
+    <!-- <div id="galleryContainer">
+      <div id="maingall" class="gallery"></div>
+    </div> -->
+    
+
+    <footer id="footer">
+      <span> </span>
+    </footer>
+
+    <!-- <script src="javascript.js"></script> -->
+    <script src="0204fotogram-script.js"></script>
+  </body>
+</html>

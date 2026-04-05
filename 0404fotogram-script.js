@@ -209,15 +209,15 @@ function showPhoto(i) {
                               <div id="bscpos" class="bigphoto" onclick="toggleStop()">  
                                 <span class="picture_name">${first_uppercase(pokemons[i].name)}</span>
                                 <b class="xclose" onclick="toggleOverlay()">X</b> 
-                                <div id="bigphoto-container" class="bigphoto_container">
-                                    <img src="${getPokemonImage(i)}" class="bigphoto_size ${getScaleClass()}">   
+                                <div id="bigphoto-container">
+                                    <img src="${getPokemonImage(i)}" class="${getBigphotoClass()} ${getScaleClass()}">   
                                 </div>   
-                                <div id="tabcontainer" class="${getTabPositonClass()}">
-                                  <span id="pokemondata" class="${getDataClass()}" onclick="showPokemonDetails(${i})"><b>Body</b></span>
+                                <div id="tabcontainer" class="tabposition">
+                                  <span id="pokemondata" class="datasheet" onclick="showPokemonDetails(${i})"><b>Body</b></span>
                                   <span id="frontBack" class="evosheet" onclick="showBackImage(${i})"><b>Back Image</b></span>
                                   <span id="fighting" class="fightingsheet" onclick="showFighting(${i})"><b>Fighting</b></span>
                                 </div>   
-                                <div id="pokemondetails" class="${getDetailClass()}"></div>                                          
+                                <div id="pokemondetails" class="details"></div>                                          
                                 <img src="./img/arrowleft.png" class="arrowposition_left" onclick="showPhotoOnArrow(${i - 1})">
                                 <span id="picnumber" class="picture_number">${i + 1} / ${pokemons.length}</span>
                                 <img src="./img/arrowright.png" class="arrowposition_right" onclick="showPhotoOnArrow(${i + 1})">
@@ -236,15 +236,15 @@ function showPhotoOnArrow(i) {
   contentRef.innerHTML = `
                           <span class="picture_name">${first_uppercase(pokemons[i].name)}</span>
                           <b class="xclose" onclick="toggleOverlay()">X</b> 
-                          <div id="bigphoto-container" class="bigphoto_container">
-                            <img src="${getPokemonImage(i)}" class="bigphoto_size ${getScaleClass()}">   
+                          <div id="bigphoto-container">
+                            <img src="${getPokemonImage(i)}" class="${getBigphotoClass()} ${getScaleClass()}">   
                           </div>     
-                          <div id="tabcontainer" class="${getTabPositonClass()}">
-                            <span id="pokemondata" class="${getDataClass()}" onclick="showPokemonDetails(${i})"><b>Body</b></span>
+                          <div id="tabcontainer" class="tabposition">
+                            <span id="pokemondata" class="datasheet" onclick="showPokemonDetails(${i})"><b>Body</b></span>
                             <span id="frontBack" class="evosheet" onclick="showBackImage(${i})"><b>Back Image</b></span>
                             <span id="fighting" class="fightingsheet" onclick="showFighting(${i})"><b>Fighting</b></span>
                           </div>            
-                          <div id="pokemondetails" class="${getDetailClass()}"></div>                                      
+                          <div id="pokemondetails" class="details"></div>                                      
                           <img src="./img/arrowleft.png" class="arrowposition_left" onclick="showPhotoOnArrow(${i - 1})">
                           <span id="picnumber" class="picture_number">${i + 1} / ${pokemons.length}</span>
                           <img src="./img/arrowright.png" class="arrowposition_right" onclick="showPhotoOnArrow(${i + 1})">`;
@@ -254,8 +254,9 @@ function showPhotoOnArrow(i) {
 }
 
 
-/* function showPokemonDetails(i) {
-  document.querySelector(`.${getDataClass()}`).classList.add("pushed");
+function showPokemonDetails(i) {
+  document.querySelector(".datasheet").classList.add("pushed");
+  // document.querySelector(".evosheet").classList.remove("pushed");  
   document.querySelector(".fightingsheet").classList.remove("pushed");  
   pushedButton = 1;
   console.log("showPokemonDetails Funktion mit i:", i);
@@ -268,62 +269,67 @@ function showPhotoOnArrow(i) {
                 <br><br>`;
   return pushedButton;
 }
+
+/* 
+class="height"
+class="weight"
+class="speed"
+class="hitpoints"
+
  */
 
-function showBackImage(i) {
-  document.querySelector(`.${getDataClass()}`).classList.remove("pushed");
+/* function showBackImage(i) {
+  document.querySelector(".datasheet").classList.remove("pushed");
   document.querySelector(".fightingsheet").classList.remove("pushed");  
   pushedButton = 2;
   let container = document.getElementById("bigphoto-container");
   container.innerHTML = "";
   container.innerHTML = `<img src="${getPokemonBackImage(i)}" class="bigphoto_size ${getScaleBackClass()}"></img>`;
   let nextContainer = document.getElementById("tabcontainer");
-  nextContainer.innerHTML = ` <span id="pokemondata" class="${getDataClass()}" onclick="showPokemonDetails(${i})"><b>Body</b>                          
+  nextContainer.innerHTML = ` <span id="pokemondata" class="datasheet" onclick="showPokemonDetails(${i})"><b>Body</b>                          
                               </span>
                               <span id="frontBack" class="evosheet" onclick="showFrontImage(${i})"><b>Front Image</b></span>
                               <span id="fighting" class="fightingsheet" onclick="showFighting(${i})"><b>Fighting</b></span>`;
-  console.log("Image Mode:", imageMode);
   return pushedButton;
   }
-     
+     */
 
-  function showBackImage(i) {
-  document.querySelector(".datasheet_normal").classList.remove("pushed");
+function showBackImage(i) {
+  document.querySelector(".datasheet").classList.remove("pushed");
   document.querySelector(".fightingsheet").classList.remove("pushed");  
   pushedButton = 2;
   let container = document.getElementById("bigphoto-container");
   container.innerHTML = "";
-  container.innerHTML = `<img src="${getPokemonBackImage(i)}" class="bigphoto_size ${getScaleBackClass()}"></img>`;
+  container.innerHTML = `<img src="${getPokemonBackImage(i)}" class="bigphoto_size_shiny_back ${getScaleBackClass()}"></img>`;
   let nextContainer = document.getElementById("tabcontainer");
-  nextContainer.innerHTML = ` <span id="pokemondata" class="datasheet_normal" onclick="showPokemonDetails(${i})"><b>Body</b>                          
+  nextContainer.innerHTML = ` <span id="pokemondata" class="datasheet" onclick="showPokemonDetails(${i})"><b>Body</b>                          
                               </span>
                               <span id="frontBack" class="evosheet" onclick="showFrontImage(${i})"><b>Front Image</b></span>
                               <span id="fighting" class="fightingsheet" onclick="showFighting(${i})"><b>Fighting</b></span>`;
-  console.log("Image Mode:", imageMode);
   return pushedButton;
   }
     
 
-
 function showFrontImage(i) {
-  document.querySelector(`.${getDataClass()}`).classList.remove("pushed");
+  document.querySelector(".datasheet").classList.remove("pushed");
   document.querySelector(".fightingsheet").classList.remove("pushed");  
   pushedButton = 2;
   let container = document.getElementById("bigphoto-container");
   container.innerHTML = "";
-  container.innerHTML = `<img src="${getPokemonImage(i)}" class="bigphoto_size ${getScaleClass()}"></img>`;
+  container.innerHTML = `<img src="${getPokemonImage(i)}" class="${getBigphotoClass()} ${getScaleClass()}"></img>`;
   let nextContainer = document.getElementById("tabcontainer");
-  nextContainer.innerHTML = `<span id="pokemondata" class="${getDataClass()}" onclick="showPokemonDetails(${i})"><b>Body</b></span>
+  nextContainer.innerHTML = `<span id="pokemondata" class="datasheet" onclick="showPokemonDetails(${i})"><b>Body</b></span>
                              <span id="frontBack" class="evosheet" onclick="showBackImage(${i})"><b>Back Image</b></span>
                              <span id="fighting" class="fightingsheet" onclick="showFighting(${i})"><b>Fighting</b></span>`;
+                             //schließendes </div> entfernt
   console.log("Image Mode:", imageMode);
   return pushedButton;
-  }
+    }
 
 
 function showFighting(i) {
   document.querySelector(".fightingsheet").classList.add("pushed");
-  document.querySelector(`.${getDataClass()}`).classList.remove("pushed");
+  document.querySelector(".datasheet").classList.remove("pushed");
   pushedButton = 3;
   console.log("showFighting Funktion mit i:", i);
   let container = document.getElementById("pokemondetails");
@@ -337,6 +343,12 @@ return pushedButton;
 }
 
 
+/* class="height"
+class="weight"
+class="special-attack"
+class="special-defense"
+
+ */
 
 function getPokemonDetailsHTML(i) {
   return `
@@ -348,6 +360,7 @@ function getPokemonDetailsHTML(i) {
 
 function checkPushed(pushedButton, i) {
   if (pushedButton === 1) {
+  console.log("datasheet hat die Klasse 'pushed'");
     showPokemonDetails(i);
   }
   else 
@@ -391,12 +404,14 @@ function roar(id) {
 
 function setNormal() {
   imageMode = "normal";
+  console.log(imageMode);
   showGallery();
 }
 
 
 function setShiny() {
   imageMode = "shiny";  
+  console.log(imageMode);
   showGallery();
 }
 
@@ -409,20 +424,12 @@ function getPokemonImage(i) {
   }
 }
 
+
 function getPokemonBackImage(i) {
   if (imageMode === "shiny") {
     return pokemons[i].sprites.back_shiny;    
   } else {  
     return pokemons[i].sprites.back_default;
-  }
-}
-
-
-function getTabPositonClass() {
-    if (imageMode === "shiny") {
-    return "tabposition_shiny";
-  } else {
-    return "tabposition_normal";
   }
 }
 
@@ -445,6 +452,7 @@ function getScaleBackClass() {
 }
 
 
+
 function getDataClass() {
   if (imageMode === "shiny") {
     return "datasheet_shiny";
@@ -462,6 +470,14 @@ function getDetailClass() {
   }
 }
 
+
+function getBigphotoClass() {
+  if (imageMode === "shiny") {
+    return "bigphoto_size_shiny";
+  } else {
+    return "bigphoto_size_normal";
+  }
+}
 
 
 function getSearchInput() {
