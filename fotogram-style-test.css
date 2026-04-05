@@ -191,18 +191,25 @@ header {
   cursor: pointer;
 }
 
-@media (max-height: 400px) {
-  .evosheet {
-    display: none;
-  }
-}
-
 @media (max-height: 380px) {
   .evosheet {
     display: none;
   }
 }
 
+
+/* .evolution-chain {
+  font-size: 15px;
+  color: whitesmoke;
+  font-family: Figtree-Light;
+  display: flex;
+  position: absolute;
+  margin-left: 20px;
+  left: 20px;
+  top: 440px;  
+  z-index: 10;
+}
+ */
 
 .fightingsheet {
   z-index: 10;
@@ -254,11 +261,6 @@ header {
   }
 }
 
-@media (max-height: 400px) {
-  .tabposition {
-   top: 15%;
-  }
-}
 
 @media (max-height: 380px) {
   .tabposition {
@@ -518,7 +520,7 @@ h1 {
   color: whitesmoke;
 }
  
-@media (max-height: 400px) {
+@media (max-height: 380px) {
   .details {
     right: -35%;
     bottom: -10%;
@@ -842,6 +844,17 @@ h1 {
   border-radius: 15px;  
 }
 
+/* .bigphoto {
+  width: min(90vw, 400px);
+  max-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--pokemon-color);
+  border-radius: 15px;
+  position: relative;
+}
+ */
 
  @media (max-height: 515px) {
   .bigphoto {
@@ -849,6 +862,40 @@ h1 {
   }
  }
 
+
+
+/* @media (max-width: 380px) {
+  .bigphoto {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 270px;
+    height: 55vh;
+    max-height: 800px; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #0b313f;
+    border-radius: 15px;    
+  }
+}
+
+@media (max-width: 350px) {
+  .bigphoto {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 250px;
+    height: 55vh;
+    max-height: 800px; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #0b313f;
+    border-radius: 15px;
+  }
+}
+ */
 
 .bigphoto_normal {
   transform: scale(3.2);
@@ -862,31 +909,31 @@ h1 {
   margin-bottom: 180px;
 } 
 
-@media (max-height: 737px) {
+/* @media (max-height: 737px) {
   .bigphoto_normal {
     transform: scale(2.5);
     }
-} 
+}  */
 
-@media (max-height: 718px) {
+/* @media (max-height: 718px) {
   .bigphoto_normal {
     transform: scale(2);    
     }
-} 
+}  */
 
-@media (max-height: 650px) {
+/* @media (max-height: 650px) {
   .bigphoto_normal {
     transform: scale(2.0);
     }
-} 
+}  */
 
-@media (max-height: 515px) {
+/* @media (max-height: 515px) {
   .bigphoto_normal {
     transform: scale(1.5);
     }
-} 
+}  */
 
-@media (max-height: 450px) {
+/* @media (max-height: 450px) {
   .bigphoto_normal {
   display: flex;
   position: relative;
@@ -898,7 +945,7 @@ h1 {
   margin-bottom: 180px;
   transform: scale(1);
     }
-} 
+}  */
 
 
 .bigphoto_shiny {
@@ -918,7 +965,23 @@ h1 {
   .bigphoto_shiny {
     display: none !important;
     }
+} 
+/* 
+@media (max-height: 380px) and (max-width: 978px) {
+  .bigphoto_shiny {
+    display: none !important;
+    transform: scale(0);
+    max-width: 0;
+    max-height: 0;
+    }
+}  */
+
+/* @media (max-height: 380px) {
+.bigphoto_size {
+  display: none;  
+  }
 }
+ */
 
 .bigphoto_size_shiny {
   max-width: 500px;
@@ -939,6 +1002,12 @@ h1 {
 .dnone {
   display: none;
 }
+
+/* @media (max-height: 380px) {
+  .bigphoto_container {
+    display: none!important;
+  }
+ } */
 
 footer {
   position: fixed;
@@ -1317,8 +1386,7 @@ footer {
   display: none;
 }
 
-
- @media (max-height: 400px) {
+@media (max-height: 380px) {
   .bigphoto_normal {
     display: none !important;
     transform: scale(0);
@@ -1331,19 +1399,4 @@ footer {
     margin-bottom: 180px;
     transform: scale(0);
     }
-}  
-
- @media (max-height: 380px) {
-  .bigphoto_normal {
-    display: none !important;
-    transform: scale(0);
-    position: relative;
-    left: 120%;
-    max-width: 500px;
-    max-height: 500px;
-    height: auto;
-    border: 5px solid white;
-    margin-bottom: 180px;
-    transform: scale(0);
-    }
-}  
+} 
