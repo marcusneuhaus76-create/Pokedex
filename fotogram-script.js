@@ -55,8 +55,6 @@ let pushedButton = null;
 
 
 async function fillNameDictionary() {
-  // Leere das Array, um die neuen Daten zu speichern
-  // for (let id = 1 + more; id <= 10 + more; id++) {
   for (let id = 1; id <= 10 + more; id++) {  
     try {
       const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}/`);
@@ -108,7 +106,6 @@ async function showGallery() {
     const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}/`);
     const data = await response.json();
     pokemons.push(data);
-    console.log("Pokemons-Array:", pokemons);
     }
   renderPokemonCard(pokemons);  
 }
@@ -135,7 +132,6 @@ function renderPokemonCard(pokemons) {
 
 function renderIcons(types) {
   let result = `<span class="pokemon-type-icon">`;
-
   types.forEach(function(type) {
     result += `<img src="${icons[type.type.name]}" class="type-icon" title="${first_uppercase(type.type.name)}">`;
   });
@@ -182,7 +178,7 @@ async function fillarray() {
     try {
       const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
       const data = await response.json();
-      console.log("Name des Pokémon, Funktion fillarray mit data.name:", data.name); // Zugriff auf den Namen des Pokémon
+      console.log("Name des Pokémon, Funktion fillarray mit data.name:", data.name); 
       nameDictionary.push(data.name);
     } catch (error) {
       console.error("Fehler:", error);
@@ -194,7 +190,7 @@ async function fillarray() {
 
 async function init() {
   await fillarray();
-  console.log("Pokemons aus Funktion 'init' aus nameDictionary:", nameDictionary); // Jetzt sind sie drin
+  console.log("Pokemons aus Funktion 'init' aus nameDictionary:", nameDictionary); 
 }
 
 
@@ -254,21 +250,6 @@ function showPhotoOnArrow(i) {
 }
 
 
-/* function showPokemonDetails(i) {
-  document.querySelector(`.${getDataClass()}`).classList.add("pushed");
-  document.querySelector(".fightingsheet").classList.remove("pushed");  
-  pushedButton = 1;
-  console.log("showPokemonDetails Funktion mit i:", i);
-  let container = document.getElementById("pokemondetails");
-  container.innerHTML =  
-               `<span id="long">Height: ${pokemons[i].height / 10} m</span>   
-                <span id="mass">Weight: ${pokemons[i].weight / 10} kg</span> 
-                <span id="speedy">Speed: ${pokemons[i].stats[5].base_stat}</span>
-                <span id="hitpoint">Hit Points: ${pokemons[i].stats[0].base_stat}</span>          
-                <br><br>`;
-  return pushedButton;
-}
- */
 
 function showBackImage(i) {
   document.querySelector(`.${getDataClass()}`).classList.remove("pushed");
@@ -379,11 +360,11 @@ function toggleOverlay() {
 
 function roar(id) {  
   fetch(`https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/${id}.ogg`)
-    .then(response => response.blob()) // Das Ergebnis von response ist die heuntergeladene Datei, aber noch nicht als abspielbares Audio. Mit "response.blob()" wird die geladene Datei in ein Blob umgewandelt.
-    .then(blob => { // Blob = Binary Large Object ist ein Object, das Audio, Video oder ein Bild enthält.
-      const audioURL = URL.createObjectURL(blob); //eine lokale URL, die der Browser abspielen kann wird in der Datei audioURL gespeichert. 
-      const audio = new Audio(audioURL); // Daraus wird ein´Audio-Objekt, dass Sound abspielen kann, erstellt.
-      audio.play(); // Die Datei wird abgespielt.
+    .then(response => response.blob()) 
+    .then(blob => { 
+      const audioURL = URL.createObjectURL(blob); 
+      const audio = new Audio(audioURL); 
+      audio.play(); 
     })
     .catch(error => console.error("Fehler:", error));
   }
@@ -467,11 +448,9 @@ function getDetailClass() {
 function getSearchInput() {
     const textInput = document.getElementById("searchInput").value.toLowerCase();
     const result = filter(textInput);
-    console.log("Inhalt der Suchvariable:", result);
     pokemons = pokemons.filter(function(pokemon) {
         return pokemon.name.includes(result);
-    });
-    console.log("Gefilterte Pokemons:", pokemons);
+    });s
     renderPokemonCard(pokemons);
 }
       
