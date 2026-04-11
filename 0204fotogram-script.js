@@ -55,8 +55,6 @@ let pushedButton = null;
 
 
 async function fillNameDictionary() {
-  // Leere das Array, um die neuen Daten zu speichern
-  // for (let id = 1 + more; id <= 10 + more; id++) {
   for (let id = 1; id <= 10 + more; id++) {  
     try {
       const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}/`);
@@ -108,19 +106,16 @@ async function showGallery() {
     const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}/`);
     const data = await response.json();
     pokemons.push(data);
-    console.log("Pokemons-Array:", pokemons);
     }
   renderPokemonCard(pokemons);  
 }
 
 
 function renderPokemonCard(pokemons) {
-    console.log("Länge des Pokemons-Arrays:", pokemons.length);
     let contentRef = document.getElementById("pokemon-list");
     contentRef.innerHTML = "";
   for (let i = 0; i < pokemons.length; i++) {
-    console.log(`Pokémon ${i} (${pokemons[i].name}) Typen:`, 
-            pokemons[i].types.map(type => type.type.name));
+            pokemons[i].types.map(type => type.type.name);
     contentRef.innerHTML += `
       <div class="pokemon-card" id="card-${i}" onclick="showPhoto(${i})">
           <span class="picture_name_card"><b>${first_uppercase(pokemons[i].name)}</b><img src="${getPokemonImage(i)}" class="smallphoto"></span>
@@ -167,7 +162,7 @@ function setColorTypeBig(i) {
 
 
 function first_uppercase(name) {
-  if (!name) return ""; /*!name prüft, ob name null, undefined, leerer String oder aus weiteren Gründen falsch ist. */
+  if (!name) return ""; 
   return name[0].toUpperCase() + name.slice(1);
 }
    
@@ -184,19 +179,16 @@ async function fillarray() {
     try {
       const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
       const data = await response.json();
-      console.log("Name des Pokémon, Funktion fillarray mit data.name:", data.name); // Zugriff auf den Namen des Pokémon
       nameDictionary.push(data.name);
     } catch (error) {
       console.error("Fehler:", error);
     }
   }
-  console.log("Gefilterte Pokemons aus Funktion 'fillarray' aus nameDictionary:", nameDictionary); 
 }
 
 
 async function init() {
   await fillarray();
-  console.log("Pokemons aus Funktion 'init' aus nameDictionary:", nameDictionary); // Jetzt sind sie drin
 }
 
 
@@ -257,10 +249,8 @@ function showPhotoOnArrow(i) {
 
 function showPokemonDetails(i) {
   document.querySelector(".datasheet").classList.add("pushed");
-  // document.querySelector(".evosheet").classList.remove("pushed");  
   document.querySelector(".fightingsheet").classList.remove("pushed");  
   pushedButton = 1;
-  console.log("showPokemonDetails Funktion mit i:", i);
   let container = document.getElementById("pokemondetails");
   container.innerHTML =  
                `<span id="long" class="height">Height: ${pokemons[i].height / 10} m</span>   
@@ -284,8 +274,6 @@ function showBackImage(i) {
                               </span>
                               <span id="frontBack" class="evosheet" onclick="showFrontImage(${i})"><b>Front Image</b></span>
                               <span id="fighting" class="fightingsheet" onclick="showFighting(${i})"><b>Fighting</b></span>`;
-                              //schließendes </div> entfernt
-  console.log("Image Mode:", imageMode);
   return pushedButton;
   }
     
@@ -301,8 +289,6 @@ function showFrontImage(i) {
   nextContainer.innerHTML = `<span id="pokemondata" class="datasheet" onclick="showPokemonDetails(${i})"><b>Body</b></span>
                              <span id="frontBack" class="evosheet" onclick="showBackImage(${i})"><b>Back Image</b></span>
                              <span id="fighting" class="fightingsheet" onclick="showFighting(${i})"><b>Fighting</b></span>`;
-                             //schließendes </div> entfernt
-  console.log("Image Mode:", imageMode);
   return pushedButton;
     }
 
@@ -311,7 +297,7 @@ function showFighting(i) {
   document.querySelector(".fightingsheet").classList.add("pushed");
   document.querySelector(".datasheet").classList.remove("pushed");
   pushedButton = 3;
-  console.log("showFighting Funktion mit i:", i);
+
   let container = document.getElementById("pokemondetails");
   container.innerHTML =  
                `<span id="attacker" class="height">Attack: ${pokemons[i].stats[1].base_stat}</span>
@@ -333,7 +319,6 @@ function getPokemonDetailsHTML(i) {
 
 function checkPushed(pushedButton, i) {
   if (pushedButton === 1) {
-  console.log("datasheet hat die Klasse 'pushed'");
     showPokemonDetails(i);
   }
   else 
@@ -365,11 +350,11 @@ function toggleOverlay() {
 
 function roar(id) {  
   fetch(`https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/${id}.ogg`)
-    .then(response => response.blob()) // Das Ergebnis von response ist die heuntergeladene Datei, aber noch nicht als abspielbares Audio. Mit "response.blob()" wird die geladene Datei in ein Blob umgewandelt.
-    .then(blob => { // Blob = Binary Large Object ist ein Object, das Audio, Video oder ein Bild enthält.
-      const audioURL = URL.createObjectURL(blob); //eine lokale URL, die der Browser abspielen kann wird in der Datei audioURL gespeichert. 
-      const audio = new Audio(audioURL); // Daraus wird ein´Audio-Objekt, dass Sound abspielen kann, erstellt.
-      audio.play(); // Die Datei wird abgespielt.
+    .then(response => response.blob())
+    .then(blob => { 
+      const audioURL = URL.createObjectURL(blob); 
+      const audio = new Audio(audioURL);
+      audio.play(); 
     })
     .catch(error => console.error("Fehler:", error));
   }
@@ -377,14 +362,12 @@ function roar(id) {
 
 function setNormal() {
   imageMode = "normal";
-  console.log(imageMode);
   showGallery();
 }
 
 
 function setShiny() {
   imageMode = "shiny";  
-  console.log(imageMode);
   showGallery();
 }
 
@@ -429,11 +412,9 @@ function getScaleBackClass() {
 function getSearchInput() {
     const textInput = document.getElementById("searchInput").value.toLowerCase();
     const result = filter(textInput);
-    console.log("Inhalt der Suchvariable:", result);
     pokemons = pokemons.filter(function(pokemon) {
         return pokemon.name.includes(result);
     });
-    console.log("Gefilterte Pokemons:", pokemons);
     renderPokemonCard(pokemons);
 }
       
