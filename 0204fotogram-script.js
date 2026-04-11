@@ -191,7 +191,7 @@ async function init() {
   await fillarray();
 }
 
-
+/* 
 function showPhoto(i) {
   let contentRef = document.getElementById("pokemon-list");
   document.body.classList.add("no-scroll");
@@ -217,9 +217,55 @@ function showPhoto(i) {
                                 <img src="./img/arrowright.png" class="arrowposition_right" onclick="showPhotoOnArrow(${i + 1})">
                               </div>
                             </div>`; 
-                          checkPushed(pushedButton, i)
+                          checkPushed(pushedButton, i);
                           setColorTypeBig(i);
                           roar(i);
+}  */
+
+  function showPhoto(i) {
+    let contentRef = document.getElementById("pokemon-list");
+    document.body.classList.add("no-scroll");
+    document.documentElement.classList.add("no-scroll");
+    if (!document.getElementById("bildOverlay")) {
+      contentRef.innerHTML += `<div id="bildOverlay" class="overlay" onclick="toggleOverlay()"></div>
+                                <div id="bspos" class="basicposition" onclick="toggleOverlay(this)">
+                                </div>`;
+    }
+      creatingTabs(i);
+      creatingDetails(i)
+      checkPushed(pushedButton, i);
+      setColorTypeBig(i);
+      roar(i);
+  }
+
+
+
+function creatingTabs(i) {
+  let bspos = document.getElementById("bspos");
+
+  bspos.innerHTML = `
+                      <div id="bscpos" class="bigphoto" onclick="toggleStop()">  
+                        <div id="tabcontainer" class="tabposition">
+                          <span class="datasheet" onclick="showPokemonDetails(${i})"><b>Body</b></span>
+                          <span class="evosheet" onclick="showBackImage(${i})"><b>Back Image</b></span>
+                          <span class="fightingsheet" onclick="showFighting(${i})"><b>Fighting</b></span>
+                        </div>
+                      </div> `;
+                  }
+
+function creatingDetails(i) {
+  let bscpos = document.getElementById("bscpos");
+  bscpos.innerHTML += `
+                        <div id="pokemondetails" class="details"></div>
+                        <span class="picture_name">${first_uppercase(pokemons[i].name)}</span>
+                        <b class="xclose" onclick="toggleOverlay()">X</b> 
+                        <div id="bigphoto-container">
+                          <img src="${getPokemonImage(i)}" class="bigphoto_size ${getScaleClass()}">   
+                        </div>                                                
+                        <img src="./img/arrowleft.png" class="arrowposition_left" onclick="showPhotoOnArrow(${i - 1})">
+                        <span class="picture_number">${i + 1} / ${pokemons.length}</span>
+                        <img src="./img/arrowright.png" class="arrowposition_right" onclick="showPhotoOnArrow(${i + 1})">
+                      `;
 }
 
 
@@ -290,7 +336,7 @@ function showFrontImage(i) {
                              <span id="frontBack" class="evosheet" onclick="showBackImage(${i})"><b>Back Image</b></span>
                              <span id="fighting" class="fightingsheet" onclick="showFighting(${i})"><b>Fighting</b></span>`;
   return pushedButton;
-    }
+  }
 
 
 function showFighting(i) {
