@@ -1,9 +1,6 @@
 
  html,body {
   background-color: rgba(0, 0, 0, 0.8);
-  /* overflow: scroll; */
- /*  background-attachment:;
-  overflow: ;  */
   scrollbar-width: none;
   -ms-overflow-style: none;
 }
@@ -34,16 +31,14 @@ z-index: 5;
 
 .logo-group {
   display: flex;  
-  position: relative;        /* hält Bild + Text zusammen */
+  position: relative;      
   align-items: center;
   margin-bottom: 20px;
-  left: 5px;
-  /* gap: 5px;     */          /*  Abstand zwischen Bild & Text */
+  left: 5px;        
 }
 
 .logo-pos {
   position: relative;
-  /* margin-top: 35px; */
   margin-left: 35px;
   margin-right: 35px;  
   display: flex;
@@ -56,7 +51,6 @@ z-index: 5;
   width: 64px;
   height: 64px;
   border-radius: 0px;
-  /* padding-bottom: 30px; */
 }
 
 .search_container {  
@@ -67,7 +61,6 @@ z-index: 5;
   background-image: url("./img/spiderweb.gif");  
   width: 200px;
   height: 200px;
-  /* margin: 40px auto; */
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
@@ -96,7 +89,6 @@ z-index: 5;
   align-items: flex-end;
   bottom: -5%;
   height: 5%;
-  /* right: 30px; */
   z-index: 1;  
 }
 
@@ -132,8 +124,6 @@ z-index: 5;
   justify-content: center;
   display: flex;
   position: absolute;
-  /* margin-left: 20px;
-  left: 20px; */
   bottom: 42px;
 }
 
@@ -147,7 +137,6 @@ z-index: 5;
   display: flex;
   justify-content: center;
   align-items: center;
-  /* overflow-x: hidden; */
   flex-wrap: wrap;
   margin-top: 100px;
 }
@@ -226,29 +215,11 @@ z-index: 5;
   filter: brightness(0.5);
 }
 
-/* .tabposition {
-  display: flex;
-  position: absolute;
-  justify-content: space-between;
-  align-items: center;
-  top:65%;
-  left: 50%;
-  transform: translateX(-50%);
-}
- */
-
-/* .datasheet {
-  display: flex;
-  position: absolute;
-  left: 0%;   
-} */
-
 .tabposition {
   display: flex;
   justify-content: space-between;
   align-items: center;
   color: var(--pokemon-color);
-  /* color: whitesmoke; */  
   font-size: 14pt;
   position: absolute;
   top: 65%;
@@ -555,8 +526,7 @@ h1 {
   position: absolute;
   top: 10%;
   left: 0;
-  width: 80%;
-  /*height: 20%;  */
+  width: 80%;S
 }
  
 
@@ -790,29 +760,6 @@ h1 {
 }
 
 
-/* 
-.attack {
-  font-size: 15px;
-  color: whitesmoke;
-  font-family: Figtree-Light;
-  display: flex;
-  position: absolute;
-  margin-left: 20px;
-  left: 20px;
-  top: 460px;  
-}
-
-.defense {
-  font-size: 15px;
-  color: whitesmoke;
-  font-family: Figtree-Light;
-  display: flex;
-  position: absolute;
-  margin-left: 20px;
-  left: 20px;
-  top: 480px;  
-}
- */
 .special-attack {
   font-size: 15px;
   color: whitesmoke;
@@ -903,7 +850,6 @@ h1 {
     align-items: flex-end;
     bottom: 10px;
     right: 25px;
-    
   }
 }
 
@@ -916,7 +862,6 @@ h1 {
     align-items: flex-end;
     bottom: 17px;
     right: 40px;
-    
   }
 }
 
@@ -929,7 +874,6 @@ h1 {
     align-items: flex-end;
     bottom: 5px;
     right: 40px;
-    
   }
 }
 
@@ -942,7 +886,6 @@ h1 {
     align-items: flex-end;
     bottom: 80px;
     right: 10px;
-    
   }
 }
 
@@ -953,7 +896,6 @@ h1 {
   align-items: flex-end;
   bottom: 30px;
   left: 90px;
-  
 }
 
 @media (max-height: 760px) {
@@ -965,7 +907,6 @@ h1 {
     align-items: flex-end;
     bottom: 17px;
     left: 90px;
-    
   }
 }
 
@@ -978,7 +919,6 @@ h1 {
     align-items: flex-end;
     bottom: 20px;
     left: 90px;
-    
   }
 }
 
@@ -991,7 +931,6 @@ h1 {
     align-items: flex-end;
     bottom: 18px;
     left: 60px;
-    
   }
 }
 
@@ -1004,7 +943,6 @@ h1 {
     align-items: flex-end;
     bottom: 8px;
     left: 25px;
-    
   }
 }
 
@@ -1017,7 +955,6 @@ h1 {
     align-items: flex-end;
     bottom: 80px;
     left: 10px;
-    
   }
 }
 
@@ -1030,7 +967,6 @@ h1 {
     align-items: flex-end;
     bottom: 17px;
     left: 40px;
-    
   }
 }
 
@@ -1043,7 +979,6 @@ h1 {
     align-items: flex-end;
     bottom: 5px;
     left: 10px;
-    
   }
 }
 
@@ -1051,8 +986,7 @@ h1 {
   width: 150px;
   height: 140px;
   margin: 10px;
- cursor: pointer;
-  /* object-fit: cover; */
+  cursor: pointer;
   box-sizing: border-box;
 }
 
@@ -1091,7 +1025,7 @@ h1 {
   left: 0;
   width: 360px;
   height: 70vh;
-  max-height: 800px; /*neu */
+  max-height: 800px; 
   display: flex;
   justify-content: center;
   align-items: center;
@@ -1271,7 +1205,6 @@ h1 {
 .bigphoto_size {
   max-width: 500px;
   max-height: 500px;
-  /* transform: scale(3); */
   height: auto;
   border: 5px solid white;
   margin-bottom: 180px;
@@ -1403,7 +1336,6 @@ footer {
   font-family: Figtree-Light;
   display: flex;
   position: relative;
- 
 }
 
 
