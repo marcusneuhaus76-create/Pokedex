@@ -6,11 +6,12 @@
 }
 
 .no-scroll {
-  overflow: hidden;
+  overflow: hidden; 
 }
 
 header {
-  display: flex;
+  position: fixed;
+  display: flex; 
   flex-wrap: wrap;
   align-content: space-between;
   justify-content: space-between;
@@ -22,6 +23,7 @@ header {
   right: 0;
   width: 100%;
   background-color: #082129;
+  z-index: 15;
 }
 
 .shinybuttons {
@@ -1285,7 +1287,6 @@ footer {
   background-color: #082129; 
   padding: 0;
   text-align: center;
-  
 }
 
 @media (max-height: 620px) {
